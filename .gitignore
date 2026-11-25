@@ -1,0 +1,31 @@
+# Visual Studio
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# SQL Server database files and backups
+*.mdf
+*.ndf
+*.ldf
+*.bak
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.local.json
+
+# Temporary and generated files
+~$*
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
