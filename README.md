@@ -4,7 +4,7 @@
 PM2.5 và PM10 tại hai trạm Hàng Đậu và Khương Trung ở Hà Nội trong năm 2024,
 sử dụng dữ liệu quan trắc từ OpenAQ.
 
-Công nghệ dự kiến: SQL Server, Visual Studio/SSIS và Power BI.
+Công nghệ dự kiến: SQL Server, Visual Studio/SSIS và Power BI. 
 
 ## Trạng thái
 
