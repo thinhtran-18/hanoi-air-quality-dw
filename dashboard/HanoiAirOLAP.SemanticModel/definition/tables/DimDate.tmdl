@@ -1,0 +1,87 @@
+table DimDate
+	lineageTag: adf81366-7d45-4317-99c9-0f53818536c8
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9363ef8d-9049-44dd-ae0e-76a4f53d95a3
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 71b06e94-517e-446f-a3ac-e66473ab622b
+		summarizeBy: none
+		sourceColumn: FullDate
+
+		variation Variation
+			isDefault
+			relationship: 45532108-62fe-418b-a081-28a657c4fdf2
+			defaultHierarchy: LocalDateTable_7247d57c-c825-44a8-9866-c2a374bfafb8.'Phân cấp ngày tháng'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DayOfMonth
+		dataType: int64
+		formatString: 0
+		lineageTag: 93488525-4aeb-4201-ac66-69d2a5a9736c
+		summarizeBy: sum
+		sourceColumn: DayOfMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: f0eac9ee-20ae-483e-a6d7-842282f2c21c
+		summarizeBy: sum
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: d7b36a41-6ce3-4f41-8d14-d2cf65aa9505
+		summarizeBy: sum
+		sourceColumn: QuarterNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: d51e9e61-35d6-4b24-ac2b-db7980139675
+		summarizeBy: sum
+		sourceColumn: YearNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeekISO
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a52d2e5-f815-47c3-83a6-99a9836ae157
+		summarizeBy: sum
+		sourceColumn: DayOfWeekISO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayName
+		dataType: string
+		lineageTag: 008f3af7-b6c6-4ba3-860e-b7cb40eb7ee2
+		summarizeBy: none
+		sourceColumn: DayName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = m
+		mode: import
+		source = let Source = Sql.Database("localhost", "hanoi_air_dw", [CreateNavigationProperties=false]){[Schema="dbo",Item="DimDate"]}[Data] in Source
+
+	annotation PBI_ResultType = Table
+

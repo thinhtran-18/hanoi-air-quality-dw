@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 127.75920184425974,
+            "y": 546.94253186728986
+          },
+          "nodeIndex": "DimDate",
+          "nodeLineageTag": "adf81366-7d45-4317-99c9-0f53818536c8",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 622.74135675617856,
+            "y": 546.4198248861278
+          },
+          "nodeIndex": "DimPollutant",
+          "nodeLineageTag": "1380121e-4989-4d2c-b1e7-ff1e8f1156b8",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 313.62096568822585,
+            "y": -50
+          },
+          "nodeIndex": "DimSensor",
+          "nodeLineageTag": "5c8d4dee-06e1-4312-a75c-a475e6ba5e26",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 623.67301154964457,
+            "y": 89.226824046953652
+          },
+          "nodeIndex": "DimStation",
+          "nodeLineageTag": "b0e943dc-5ae7-4bc2-98fb-8b187867e765",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 154.45744821514188
+          },
+          "nodeIndex": "DimTime",
+          "nodeLineageTag": "d70c7c00-3bb4-45e0-99b4-d0e29b8dc326",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 336.61029394167571,
+            "y": 193.37497132630654
+          },
+          "nodeIndex": "FactAirQuality",
+          "nodeLineageTag": "36e951cb-9adf-462a-ade8-55c42257966a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Tất cả các bảng",
+      "zoomValue": 69.889313929107573,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Tất cả các bảng",
+  "defaultDiagram": "Tất cả các bảng"
+}

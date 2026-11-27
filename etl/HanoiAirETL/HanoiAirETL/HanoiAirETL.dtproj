@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <DeploymentModel>Project</DeploymentModel>
   <ProductVersion>17.0.1016.0</ProductVersion>
@@ -22,10 +22,11 @@
           <SSIS:Property SSIS:Name="VersionComments">
           </SSIS:Property>
           <SSIS:Property SSIS:Name="CreationDate">2026-11-27T12:22:48.910198+07:00</SSIS:Property>
-          <SSIS:Property SSIS:Name="CreatorName"></SSIS:Property>
-          <SSIS:Property SSIS:Name="CreatorComputerName"></SSIS:Property>
+          <SSIS:Property SSIS:Name="CreatorName">LAPTOP-THINHTRA\Admin</SSIS:Property>
+          <SSIS:Property SSIS:Name="CreatorComputerName">LAPTOP-THINHTRA</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAzoMCtSV9PUe7RDyRzRnsWwAAAAACAAAAAAAQZgAAAAEAACAAAAD9N/OWTkhQAGdUQZD2KMhbz1E4r84J12kUpC4fGO7o/AAAAAAOgAAAAAIAACAAAACwNEWioR4zVQkrwzjEmTzwCeSzEhWzomJ8V9kDPvjdNpAAAACVrSfeWdpeOPYF5WoN8ubKWn/7IRn/oQpzCOo5wqjqXSzdQzEqLZyC4/TibuIDlpk5g6xJTWf93+WrRQhl5yp/DbV4wkSOdEk07e6odeeMEG7lWNgukf7pH/JAmvGuAqUg9NSraYrXbDFS37+vLOdqnST2hHGURBN4FTgXiO35darVW2K4ac2XvXTUFxaZW8VAAAAANGFVlNukY13IbhX2hnFqOEjYQl8eZVcV0xzYgdOFSm0ncl3Pm6UrnZv34HtMi7L7sL+ysoAhh4gUm1pbGYnzgA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>

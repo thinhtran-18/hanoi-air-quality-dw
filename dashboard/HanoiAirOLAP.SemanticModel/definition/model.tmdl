@@ -1,0 +1,29 @@
+model Model
+	culture: vi-VN
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DimDate","DimPollutant","DimSensor","DimStation","DimTime","FactAirQuality"]
+
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
+
+ref table DimDate
+ref table DateTableTemplate_b6419666-919b-467d-a6f9-4675f615ab3a
+ref table LocalDateTable_7247d57c-c825-44a8-9866-c2a374bfafb8
+ref table DimPollutant
+ref table DimSensor
+ref table DimStation
+ref table DimTime
+ref table FactAirQuality
+ref table LocalDateTable_f384d686-7e10-47a9-9af4-9e23416ecb1d
+ref table LocalDateTable_9880bd53-c789-4dad-a5c0-ec37ba8ccdf4
+ref table LocalDateTable_76e35690-b742-4fbd-9b83-7b2ad99fb160
+
+ref cultureInfo vi-VN
+

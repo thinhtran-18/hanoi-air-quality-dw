@@ -1,5 +1,15 @@
 # Môi trường phát triển - kiểm tra ngày 27/11/2026
 
+## Cập nhật sau xử lý lỗi cài SSIS
+
+Trạng thái mới nhất ngày 27/11/2026 thay thế các mô tả lỗi cũ bên dưới: **Visual Studio đã `isComplete=True`; SSIS Projects 2.2 đã cài thành công**. Restart trước đó không giải quyết được do trạng thái Repair lỗi vẫn còn. Trong state.errors của VS, gói Microsoft Analysis Services Projects 4.0.0 bị lỗi tải với URI rỗng, mã 0x80004003. Log SSIS sau Restart không có RebootPending.
+
+Đã dùng VSIX Installer chính thức gỡ riêng Analysis Services Projects 4.0.0 gây lỗi; tiến trình gỡ hoàn tất, VS chuyển sang hoàn tất cài đặt. Sau đó chạy lại trình cài SSIS 2.2, chọn được instance và cài hết luồng với mã `0x0`, không yêu cầu Restart. Không sửa tay state.json/registry hoặc xóa BIShared.
+
+Đã mở Visual Studio, chọn mẫu Integration Services Project, tạo project kiểm tra cục bộ và mở Package.dtsx thành công với Control Flow, Data Flow, Connection Managers và SSIS Toolbox. Project kiểm tra nằm trong `.local/`, được Git bỏ qua. Đây chưa phải package ETL của dự án; chưa kiểm chứng kết nối, chạy/debug package ETL hoặc Script Task. Log VSTA có cảnh báo bước cleanup không trọng yếu; toàn bộ bộ cài vẫn trả mã thành công.
+
+**Analysis Services hiện đã được gỡ**; nếu cần cube SSAS về sau phải cài lại extension từ nguồn Microsoft và kiểm tra riêng. SQL Server, dữ liệu nguồn và kho không bị gỡ trong thao tác này. Các mục lịch sử phía dưới mô tả trạng thái trước khi sửa.
+
 | Thành phần | Kết quả kiểm tra |
 | --- | --- |
 | Repo | `D:\Kho_dlieu\hanoi-air-quality-dw`, nhánh `main`, remote `https://github.com/thinhtran-18/hanoi-air-quality-dw.git` |

@@ -1,10 +1,10 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="11/27/2026 12:22:49 PM"
   DTS:CreationName="Microsoft.Package"
-  DTS:CreatorComputerName=""
-  DTS:CreatorName=""
+  DTS:CreatorComputerName="LAPTOP-THINHTRA"
+  DTS:CreatorName="LAPTOP-THINHTRA\Admin"
   DTS:DTSID="{21B91039-70D2-4DFA-9071-67E85A102433}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="17.0.1016.0"
@@ -94,25 +94,25 @@
                   description="The SQL command to be executed."
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
-
+    
      id AS SourceId,
-
+    
      location_id AS StationId,
-
+    
      sensor_id AS SensorId,
-
+   
      location_name AS StationName,
-
+    
      observed_at AS ObservedAtSource,
-
+    
      latitude AS Latitude,
-
+    
      longitude AS Longitude,
-
+    
      parameter AS PollutantCode,
-
+    
      unit AS Unit,
-
+    
      value AS Value
 
 FROM dbo.air_quality_hourly

@@ -1,6 +1,6 @@
 # Hướng dẫn làm việc và trạng thái dự án
 
-Cập nhật gần nhất: **27/11/2026**. Bước 9 đã chạy SSIS thành công hai lần và đối soát fact; còn kiểm tra tham số kết nối và xử lý batch cũ Running. Xem `docs/huong_dan_buoc_9_ssis.md`.
+Cập nhật gần nhất: **28/11/2026**. Bước 11 đã hoàn thành các phần chính: 8 truy vấn SQL OLAP, cube SSAS 5 chiều (`HanoiAirOLAP`, gồm `DimSensor`), 3 truy vấn MDX đối soát khớp SQL, và bản Power BI nháp (`HanoiAirOLAP.pbip`). Còn giới hạn khách quan về validate 2 schema PBIR mới chưa được Microsoft công bố và 1 cảnh báo provider SSDT. Xem `report/cac_phan/07_olap_buoc11.md`.
 
 ## 1. Mục tiêu và phạm vi
 
@@ -19,8 +19,8 @@ Dự án đồ án kho dữ liệu phục vụ phân tích đa chiều nồng đ
 | SQL Server, T-SQL | Nguồn đã đối soát; kho Star đã nạp 11.500 fact; nạp lại không tăng số dòng |
 | SSMS / sqlcmd | Thực thi script và kiểm tra dữ liệu, ràng buộc, kết quả ETL |
 | Visual Studio / SSIS | SSIS Projects 2.2 đã cài; package ETL chạy thành công hai lần, còn giới hạn và minh chứng như hướng dẫn bước 9 |
-| Analysis Services / OLAP | Hướng triển khai phân tích đa chiều; chưa dựng mô hình/cube |
-| Power BI Desktop | Mô hình phân tích, measure và dashboard; chưa triển khai |
+| Analysis Services / OLAP | Cube `Air Quality` (`HanoiAirOLAP`, 5 chiều gồm `DimSensor`) đã deploy/process; 3 MDX khớp SQL; `HanoiAirCubeImported` build 0 lỗi, còn 1 cảnh báo provider |
+| Power BI Desktop | Mô hình PBIP 6 bảng, 5 quan hệ, measure cơ bản và trang nháp Bước 11 khớp SQL; chưa hoàn thiện 3 trang và view ghép cặp (Bước 12–14) |
 | Python / Pillow | Công cụ đối soát, tạo tài liệu và sơ đồ; các script vẽ hiện dùng Arial trên Windows |
 | draw.io / PNG | Sơ đồ chỉnh sửa được và bản hình đưa vào báo cáo |
 | Git / GitHub | Quản lý phiên bản mã nguồn, tài liệu và minh chứng đã rà soát |
@@ -64,7 +64,8 @@ Không mặc định công cụ đã hoạt động chỉ vì đã cài hoặc t
 | 9: SSIS | Luồng chính đã kiểm chứng; còn việc bàn giao | Hai batch Success: mỗi batch trích 11.500, 0 mới, 11.500 đã có; fact 11.500. Đã có ảnh cấu hình; còn kiểm tra tham số kết nối và batch Running cũ; xem hướng dẫn bước 9 |
 | 10: Kiểm thử ETL và kho | Đang thực hiện | Đã đối soát nguồn/kho và chạy các ca trùng, xung đột, thiếu dimension, thời gian trong SSMS; xem `report/minh_chung/ket_qua_etl.csv`. Chưa chạy SSIS trên kho trống độc lập và chưa giả lập lỗi giữa luồng hoàn chỉnh. |
 | ETL | T-SQL và package SSIS đã chạy | Nguồn → staging → dimension/fact; có nhánh lỗi và log, còn giới hạn vận hành được ghi trong hướng dẫn bước 9 |
-| OLAP / Power BI / báo cáo tổng hợp | Chưa thực hiện | Triển khai sau khi kho và ETL đã kiểm chứng |
+| 11: OLAP / SSAS / Power BI | Đạt phần chính (còn giới hạn schema PBIR) | Đã chạy 8 SQL OLAP (`sql/olap/01`–`08`), dựng/deploy/process cube SSAS 5 chiều (`HanoiAirOLAP`, có `DimSensor`), chạy 3 MDX khớp SQL và dựng PBIP nháp khớp SQL (`5.749` PM2.5 TB `38,75`). Còn 1 cảnh báo provider SSDT và 2 schema PBIR mới chưa công bố; xem `report/cac_phan/07_olap_buoc11.md`. |
+| Power BI / báo cáo tổng hợp | Chuyển tiếp Bước 12–14 | PBIP Bước 11 đã hoạt động với 6 bảng, 5 quan hệ và measure cơ bản; các bước 12–14 sẽ bổ sung đủ DAX, 3 trang báo cáo và `vw_StationHourly`/`vw_StationPairHourly`. |
 
 Môi trường SSIS đã sửa: gỡ Analysis Services Projects 4.0.0 bằng VSIX Installer vì gói Repair có URI rỗng; Visual Studio chuyển `isComplete=True`; SSIS 2.2 cài thành công, tạo được project và mở package designer. Package ETL đã chạy thành công hai lần. Analysis Services đã gỡ, cần cài lại nếu dùng cube SSAS. Không tự sửa/xóa thành phần dùng chung của môi trường phát triển.
 

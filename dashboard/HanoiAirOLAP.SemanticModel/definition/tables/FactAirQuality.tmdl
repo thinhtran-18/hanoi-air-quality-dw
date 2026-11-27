@@ -1,0 +1,164 @@
+table FactAirQuality
+	lineageTag: 36e951cb-9adf-462a-ade8-55c42257966a
+
+	measure 'Đo lường'
+		lineageTag: 475742af-d498-4a3a-9a9b-c9ee8f77ebc9
+
+	/// Số quan sát hợp lệ trong ngữ cảnh lọc.
+	measure 'Số phép đo hợp lệ' = CALCULATE(COUNTROWS('FactAirQuality'), 'FactAirQuality'[IsValid] = TRUE())
+		formatString: #,##0
+		lineageTag: 1701c096-3197-4cfd-b21c-3add1fac6e88
+
+	/// Trung bình các phép đo hợp lệ của một chất; để trống khi chọn nhiều chất.
+	measure 'Nồng độ trung bình' = IF(HASONEVALUE('DimPollutant'[PollutantCode]), CALCULATE(AVERAGE('FactAirQuality'[Value]), 'FactAirQuality'[IsValid] = TRUE()), BLANK())
+		formatString: #,##0.00
+		lineageTag: 5337e6cf-fcc8-4a7a-889c-808e157dc962
+
+	/// Trung bình PM2.5 của các phép đo hợp lệ trong bộ lọc hiện tại; không suy rộng cho khoảng thiếu.
+	measure 'PM2.5 trung bình (µg/m³)' = CALCULATE(AVERAGE('FactAirQuality'[Value]), 'FactAirQuality'[IsValid] = TRUE(), KEEPFILTERS('DimPollutant'[PollutantCode] = "pm25"))
+		formatString: #,##0.00
+		lineageTag: 5ea44139-4be2-49d1-b803-746439b03317
+
+	column AirQualityKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e6122671-73b9-4d96-9368-ca1cfed3db83
+		summarizeBy: count
+		sourceColumn: AirQualityKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cb2f8f5-0cb2-4667-ba82-f8a52bf9505e
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: fed71e7e-4f7f-4846-89f1-7f92a21a32af
+		summarizeBy: none
+		sourceColumn: TimeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d86eb52f-81d7-4f97-b06f-2ccdccb4831a
+		summarizeBy: none
+		sourceColumn: StationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PollutantKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d733bce-15f9-4528-ad58-89f4d89cbe53
+		summarizeBy: none
+		sourceColumn: PollutantKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SensorKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 0aa370d8-12d3-467b-95ae-220e3394debd
+		summarizeBy: none
+		sourceColumn: SensorKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ObservedAtSource
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5e82c5b5-9e66-4a34-bd5b-c0b9239870c5
+		summarizeBy: none
+		sourceColumn: ObservedAtSource
+
+		variation Variation
+			isDefault
+			relationship: d4a5c09a-57e9-4590-a89f-19e90336fd10
+			defaultHierarchy: LocalDateTable_f384d686-7e10-47a9-9af4-9e23416ecb1d.'Phân cấp ngày tháng'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ObservedAtUTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e3a382e1-d2a4-4c09-ad46-7b265aab91a1
+		summarizeBy: none
+		sourceColumn: ObservedAtUTC
+
+		variation Variation
+			isDefault
+			relationship: 0e3ad718-386d-40a5-96ce-6c8f9834b3fc
+			defaultHierarchy: LocalDateTable_9880bd53-c789-4dad-a5c0-ec37ba8ccdf4.'Phân cấp ngày tháng'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ObservedAtLocal
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 73bba70e-f27a-4a2b-9118-74ee8ac0b717
+		summarizeBy: none
+		sourceColumn: ObservedAtLocal
+
+		variation Variation
+			isDefault
+			relationship: e07e60ad-5ebd-4291-b41a-45d2bc5c5ef4
+			defaultHierarchy: LocalDateTable_76e35690-b742-4fbd-9b83-7b2ad99fb160.'Phân cấp ngày tháng'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: double
+		lineageTag: e1bd0085-8062-4071-9f93-d2b9ec772c55
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IsValid
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 289c1df3-1e7c-47c5-a9bb-fe0c971f6112
+		summarizeBy: none
+		sourceColumn: IsValid
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceId
+		dataType: int64
+		formatString: 0
+		lineageTag: bce314f5-4b91-433d-9521-612782127d90
+		summarizeBy: count
+		sourceColumn: SourceId
+
+		annotation SummarizationSetBy = Automatic
+
+	column BatchId
+		dataType: string
+		lineageTag: 2835ddc6-9286-4275-896d-4d8ff8769913
+		summarizeBy: none
+		sourceColumn: BatchId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactAirQuality = m
+		mode: import
+		source =
+				let
+				  Nguồn = Sql.Database("localhost", "hanoi_air_dw"),
+				  #"Điều hướng 1" = Sql.Database("localhost", "hanoi_air_dw", [CreateNavigationProperties=false]){[Schema="dbo",Item="FactAirQuality"]}[Data]
+				in
+				  #"Điều hướng 1"
+
+	annotation PBI_ResultType = Table
+

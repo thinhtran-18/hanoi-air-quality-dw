@@ -1,0 +1,4 @@
+-- Slice theo chất; nồng độ là trung bình các phép đo hợp lệ, không cộng các chất.
+SELECT {[Measures].[Observation Count], [Measures].[Mean Concentration]} ON COLUMNS,
+NON EMPTY [Pollutant].[Pollutant].[Pollutant].MEMBERS ON ROWS
+FROM [Air Quality];

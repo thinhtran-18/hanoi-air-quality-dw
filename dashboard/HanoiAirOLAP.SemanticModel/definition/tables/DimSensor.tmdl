@@ -1,0 +1,35 @@
+table DimSensor
+	lineageTag: 5c8d4dee-06e1-4312-a75c-a475e6ba5e26
+
+	column SensorKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 69a3721d-54e8-4d82-b845-0f4e55b66acf
+		summarizeBy: none
+		sourceColumn: SensorKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SensorId
+		dataType: int64
+		formatString: 0
+		lineageTag: 50905877-16cf-4374-a52b-fbeba1732394
+		summarizeBy: none
+		sourceColumn: SensorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column SensorDescription
+		dataType: string
+		lineageTag: b85d7cd4-518a-4195-b758-b34e36671c46
+		summarizeBy: none
+		sourceColumn: SensorDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSensor = m
+		mode: import
+		source = let Source = Sql.Database("localhost", "hanoi_air_dw", [CreateNavigationProperties=false]){[Schema="dbo",Item="DimSensor"]}[Data] in Source
+
+	annotation PBI_ResultType = Table
+

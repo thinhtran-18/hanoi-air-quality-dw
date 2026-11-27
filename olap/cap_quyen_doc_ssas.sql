@@ -1,0 +1,15 @@
+-- Quyền đọc tối thiểu cho tài khoản dịch vụ SSAS cục bộ. Chạy bằng tài khoản quản trị SQL Server.
+IF SUSER_ID(N'NT SERVICE\MSSQLServerOLAPService') IS NULL
+    CREATE LOGIN [NT SERVICE\MSSQLServerOLAPService] FROM WINDOWS;
+GO
+USE hanoi_air_dw;
+GO
+IF DATABASE_PRINCIPAL_ID(N'NT SERVICE\MSSQLServerOLAPService') IS NULL
+    CREATE USER [NT SERVICE\MSSQLServerOLAPService] FOR LOGIN [NT SERVICE\MSSQLServerOLAPService];
+GRANT SELECT ON dbo.FactAirQuality TO [NT SERVICE\MSSQLServerOLAPService];
+GRANT SELECT ON dbo.DimDate TO [NT SERVICE\MSSQLServerOLAPService];
+GRANT SELECT ON dbo.DimTime TO [NT SERVICE\MSSQLServerOLAPService];
+GRANT SELECT ON dbo.DimStation TO [NT SERVICE\MSSQLServerOLAPService];
+GRANT SELECT ON dbo.DimPollutant TO [NT SERVICE\MSSQLServerOLAPService];
+GRANT SELECT ON dbo.DimSensor TO [NT SERVICE\MSSQLServerOLAPService];
+GO

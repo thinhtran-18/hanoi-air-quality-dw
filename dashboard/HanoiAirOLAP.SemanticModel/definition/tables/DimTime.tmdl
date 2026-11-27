@@ -1,0 +1,61 @@
+table DimTime
+	lineageTag: d70c7c00-3bb4-45e0-99b4-d0e29b8dc326
+
+	column TimeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 21042ad2-d189-433f-a06b-6c04b58a72cc
+		summarizeBy: none
+		sourceColumn: TimeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullTime
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 097393c2-3b93-4cce-bf3f-e54a8617f279
+		summarizeBy: none
+		sourceColumn: FullTime
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column HourNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: e4febfd1-bd09-47be-b750-b645da252273
+		summarizeBy: none
+		sourceColumn: HourNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinuteNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 61a77a38-f223-47f8-9f1e-7ea012c77d1a
+		summarizeBy: none
+		sourceColumn: MinuteNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column SecondNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 73164f72-377d-4fed-9882-a12d9c956d29
+		summarizeBy: none
+		sourceColumn: SecondNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimTime = m
+		mode: import
+		source =
+				let
+				  Nguồn = Sql.Database("localhost", "hanoi_air_dw"),
+				  #"Điều hướng 1" = Sql.Database("localhost", "hanoi_air_dw", [CreateNavigationProperties=false]){[Schema="dbo",Item="DimTime"]}[Data]
+				in
+				  #"Điều hướng 1"
+
+	annotation PBI_ResultType = Table
+

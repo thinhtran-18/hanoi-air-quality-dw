@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Warehouse</ID>
+  <Name>Warehouse</Name>
+  <CreatedTimestamp>2026-11-27T16:11:36.42Z</CreatedTimestamp>
+  <LastSchemaUpdate>2026-11-27T16:11:56.403333Z</LastSchemaUpdate>
+  <DataSourceID>Warehouse</DataSourceID>
+  <Schema>
+    <xs:schema xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" id="Warehouse">
+      <xs:element name="Warehouse" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="FactAirQuality" msprop:DbTableName="FactAirQuality" msprop:FriendlyName="FactAirQuality" msprop:TableType="Table" msprop:DbSchemaName="dbo">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="AirQualityKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:long"/>
+                  <xs:element name="DateKey" type="xs:int"/>
+                  <xs:element name="TimeKey" type="xs:int"/>
+                  <xs:element name="StationKey" type="xs:int"/>
+                  <xs:element name="PollutantKey" type="xs:int"/>
+                  <xs:element name="SensorKey" type="xs:int"/>
+                  <xs:element name="ObservedAtSource" msdata:DataType="System.DateTimeOffset" type="xs:anyType"/>
+                  <xs:element name="ObservedAtUTC" type="xs:dateTime"/>
+                  <xs:element name="ObservedAtLocal" msdata:DataType="System.DateTimeOffset" type="xs:anyType"/>
+                  <xs:element name="Value" type="xs:double" minOccurs="0"/>
+                  <xs:element name="IsValid" type="xs:boolean"/>
+                  <xs:element name="SourceId" type="xs:long"/>
+                  <xs:element name="BatchId" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="DimDate" msprop:DbTableName="DimDate" msprop:FriendlyName="DimDate" msprop:TableType="Table" msprop:DbSchemaName="dbo">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="DateKey" type="xs:int"/>
+                  <xs:element name="FullDate" type="xs:dateTime"/>
+                  <xs:element name="DayOfMonth" type="xs:unsignedByte"/>
+                  <xs:element name="MonthNumber" type="xs:unsignedByte"/>
+                  <xs:element name="QuarterNumber" type="xs:unsignedByte"/>
+                  <xs:element name="YearNumber" type="xs:short"/>
+                  <xs:element name="DayOfWeekISO" type="xs:unsignedByte"/>
+                  <xs:element name="DayName">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="12"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="DimTime" msprop:DbTableName="DimTime" msprop:FriendlyName="DimTime" msprop:TableType="Table" msprop:DbSchemaName="dbo">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="TimeKey" type="xs:int"/>
+                  <xs:element name="FullTime" type="xs:duration"/>
+                  <xs:element name="HourNumber" type="xs:unsignedByte"/>
+                  <xs:element name="MinuteNumber" type="xs:unsignedByte"/>
+                  <xs:element name="SecondNumber" type="xs:unsignedByte"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="DimStation" msprop:DbTableName="DimStation" msprop:FriendlyName="DimStation" msprop:TableType="Table" msprop:DbSchemaName="dbo">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="StationKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int"/>
+                  <xs:element name="StationId" type="xs:int"/>
+                  <xs:element name="StationName">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="160"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Latitude" type="xs:decimal" minOccurs="0"/>
+                  <xs:element name="Longitude" type="xs:decimal" minOccurs="0"/>
+                  <xs:element name="CityName">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="80"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="DistrictName" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="80"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="DimPollutant" msprop:DbTableName="DimPollutant" msprop:FriendlyName="DimPollutant" msprop:TableType="Table" msprop:DbSchemaName="dbo">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="PollutantKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int"/>
+                  <xs:element name="PollutantCode">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="20"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="PollutantName">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="40"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Unit">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="40"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="DimSensor" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:DbTableName="DimSensor" msprop:FriendlyName="DimSensor">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="SensorKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="SensorKey" msprop:DbColumnName="SensorKey" type="xs:int"/>
+                  <xs:element name="SensorId" msprop:FriendlyName="SensorId" msprop:DbColumnName="SensorId" type="xs:int"/>
+                  <xs:element name="SensorDescription" msprop:FriendlyName="SensorDescription" msprop:DbColumnName="SensorDescription" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+        <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//FactAirQuality"/>
+          <xs:field xpath="AirQualityKey"/>
+        </xs:unique>
+        <xs:unique name="DimDate_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//DimDate"/>
+          <xs:field xpath="DateKey"/>
+        </xs:unique>
+        <xs:unique name="DimTime_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//DimTime"/>
+          <xs:field xpath="TimeKey"/>
+        </xs:unique>
+        <xs:unique name="DimStation_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//DimStation"/>
+          <xs:field xpath="StationKey"/>
+        </xs:unique>
+        <xs:unique name="DimPollutant_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//DimPollutant"/>
+          <xs:field xpath="PollutantKey"/>
+        </xs:unique>
+        <xs:unique name="DimSensor_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//DimSensor"/>
+          <xs:field xpath="SensorKey"/>
+        </xs:unique>
+      <xs:keyref name="FK_FactAirQuality_DimDate" refer="DimDate_Constraint1"><xs:selector xpath=".//FactAirQuality"/><xs:field xpath="DateKey"/></xs:keyref><xs:keyref name="FK_FactAirQuality_DimTime" refer="DimTime_Constraint1"><xs:selector xpath=".//FactAirQuality"/><xs:field xpath="TimeKey"/></xs:keyref><xs:keyref name="FK_FactAirQuality_DimStation" refer="DimStation_Constraint1"><xs:selector xpath=".//FactAirQuality"/><xs:field xpath="StationKey"/></xs:keyref><xs:keyref name="FK_FactAirQuality_DimPollutant" refer="DimPollutant_Constraint1"><xs:selector xpath=".//FactAirQuality"/><xs:field xpath="PollutantKey"/></xs:keyref><xs:keyref name="FK_FactAirQuality_DimSensor" refer="DimSensor_Constraint1"><xs:selector xpath=".//FactAirQuality"/><xs:field xpath="SensorKey"/></xs:keyref></xs:element>
+    </xs:schema>
+    <Warehouse xmlns=""/>
+  </Schema>
+</DataSourceView>

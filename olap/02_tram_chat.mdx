@@ -1,0 +1,4 @@
+-- Dice theo trạm và chất; số mẫu đi kèm để đánh giá độ đại diện.
+SELECT {[Measures].[Observation Count], [Measures].[Mean Concentration]} ON COLUMNS,
+NON EMPTY ([Station].[Station].[Station].MEMBERS * [Pollutant].[Pollutant].[Pollutant].MEMBERS) ON ROWS
+FROM [Air Quality];

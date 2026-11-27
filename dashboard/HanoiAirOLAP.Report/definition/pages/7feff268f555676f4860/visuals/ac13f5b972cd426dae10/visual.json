@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "ac13f5b972cd426dae10",
+  "position": {
+    "x": 20,
+    "y": 650,
+    "z": 1002,
+    "height": 380,
+    "width": 1100,
+    "tabOrder": 1002
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimStation"
+                    }
+                  },
+                  "Property": "StationName"
+                }
+              },
+              "queryRef": "DimStation.StationName",
+              "nativeQueryRef": "StationName",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimPollutant"
+                    }
+                  },
+                  "Property": "PollutantCode"
+                }
+              },
+              "queryRef": "DimPollutant.PollutantCode",
+              "nativeQueryRef": "PollutantCode"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactAirQuality"
+                    }
+                  },
+                  "Property": "Số phép đo hợp lệ"
+                }
+              },
+              "queryRef": "FactAirQuality.Số phép đo hợp lệ",
+              "nativeQueryRef": "Số phép đo hợp lệ"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactAirQuality"
+                    }
+                  },
+                  "Property": "Nồng độ trung bình"
+                }
+              },
+              "queryRef": "FactAirQuality.Nồng độ trung bình",
+              "nativeQueryRef": "Nồng độ trung bình"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+table DimPollutant
+	lineageTag: 1380121e-4989-4d2c-b1e7-ff1e8f1156b8
+
+	column PollutantKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e7a6e17-0022-456d-8f98-e31d75b52c41
+		summarizeBy: none
+		sourceColumn: PollutantKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PollutantCode
+		dataType: string
+		lineageTag: 8134b285-ef8e-4f6e-b181-b33b41b86195
+		summarizeBy: none
+		sourceColumn: PollutantCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column PollutantName
+		dataType: string
+		lineageTag: 9552ac90-a4bb-4102-b1a7-453e0b3abeb9
+		summarizeBy: none
+		sourceColumn: PollutantName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unit
+		dataType: string
+		lineageTag: 874c4963-a479-41cf-8d60-4c55092fe77c
+		summarizeBy: none
+		sourceColumn: Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPollutant = m
+		mode: import
+		source =
+				let
+				  Nguồn = Sql.Database("localhost", "hanoi_air_dw"),
+				  #"Điều hướng 1" = Sql.Database("localhost", "hanoi_air_dw", [CreateNavigationProperties=false]){[Schema="dbo",Item="DimPollutant"]}[Data]
+				in
+				  #"Điều hướng 1"
+
+	annotation PBI_ResultType = Table
+

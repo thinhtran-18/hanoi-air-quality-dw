@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "HanoiAirOLAP"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8ae5d63f-b544-4f10-b9bf-91bc4b28080e"
+  }
+}

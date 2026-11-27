@@ -1,0 +1,33 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="fb78c4bc-80b3-41be-9685-169b3457a1fd" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Air Quality</ID>
+  <MeasureGroups>
+    <MeasureGroup>
+      <ID>Observations</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="02dda6c6-b7ba-44ec-a1d5-20220a4704b6">
+          <ID>Valid Observations</ID>
+          <Name>Valid Observations</Name>
+          <CreatedTimestamp>2026-11-27T16:11:56.586667Z</CreatedTimestamp>
+          <LastSchemaUpdate>2026-11-27T16:11:56.586667Z</LastSchemaUpdate>
+          <LastProcessed>2026-11-27T16:12:15.49Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="ba2c90a1-37b0-43c8-9b22-5dd28e459448">
+            <DataSourceID>Warehouse</DataSourceID>
+            <QueryDefinition>SELECT * FROM dbo.FactAirQuality WHERE IsValid = 1</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="fbf4129d-4714-4ec9-ac3e-a22e4df5a67a">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="e4321cf5-f6e0-48be-8137-a749a5d5cc6f" />
+          </ProactiveCaching>
+          <EstimatedSize>51204</EstimatedSize>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+  </MeasureGroups>
+</Cube>

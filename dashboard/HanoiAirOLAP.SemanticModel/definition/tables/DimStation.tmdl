@@ -1,0 +1,71 @@
+table DimStation
+	lineageTag: b0e943dc-5ae7-4bc2-98fb-8b187867e765
+
+	column StationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 24876bed-9e92-41a9-93f9-dfd16cfd913a
+		summarizeBy: none
+		sourceColumn: StationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StationId
+		dataType: int64
+		formatString: 0
+		lineageTag: e34a4b71-6c9c-40de-8707-63d13b6378cc
+		summarizeBy: none
+		sourceColumn: StationId
+
+		annotation SummarizationSetBy = Automatic
+
+	column StationName
+		dataType: string
+		lineageTag: 500a41a6-6734-40df-bd12-4b2960ca1567
+		summarizeBy: none
+		sourceColumn: StationName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		lineageTag: 746cecb3-fa78-40d0-b036-db1c9595f98b
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		lineageTag: f03b1c30-eed7-4e1a-914d-fd76357591d3
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CityName
+		dataType: string
+		lineageTag: e3a75a14-660e-40e7-8775-acf0c2f4d70b
+		summarizeBy: none
+		sourceColumn: CityName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistrictName
+		dataType: string
+		lineageTag: cfc68529-7b3a-4e6e-9533-53794fcfef13
+		summarizeBy: none
+		sourceColumn: DistrictName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimStation = m
+		mode: import
+		source = let Source = Sql.Database("localhost", "hanoi_air_dw", [CreateNavigationProperties=false]){[Schema="dbo",Item="DimStation"]}[Data] in Source
+
+	annotation PBI_ResultType = Table
+

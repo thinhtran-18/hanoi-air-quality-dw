@@ -1,0 +1,40 @@
+relationship 45532108-62fe-418b-a081-28a657c4fdf2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.FullDate
+	toColumn: LocalDateTable_7247d57c-c825-44a8-9866-c2a374bfafb8.Date
+
+relationship d4a5c09a-57e9-4590-a89f-19e90336fd10
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactAirQuality.ObservedAtSource
+	toColumn: LocalDateTable_f384d686-7e10-47a9-9af4-9e23416ecb1d.Date
+
+relationship 0e3ad718-386d-40a5-96ce-6c8f9834b3fc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactAirQuality.ObservedAtUTC
+	toColumn: LocalDateTable_9880bd53-c789-4dad-a5c0-ec37ba8ccdf4.Date
+
+relationship e07e60ad-5ebd-4291-b41a-45d2bc5c5ef4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactAirQuality.ObservedAtLocal
+	toColumn: LocalDateTable_76e35690-b742-4fbd-9b83-7b2ad99fb160.Date
+
+relationship AutoDetected_105931b9-c436-4e3c-b2c6-cca8db8ce593
+	fromColumn: FactAirQuality.DateKey
+	toColumn: DimDate.DateKey
+
+relationship AutoDetected_a47d53a7-adc3-440d-9c04-6f2f335ffe97
+	fromColumn: FactAirQuality.PollutantKey
+	toColumn: DimPollutant.PollutantKey
+
+relationship AutoDetected_70228694-5abd-473f-ae79-a3096ea1e2c4
+	fromColumn: FactAirQuality.SensorKey
+	toColumn: DimSensor.SensorKey
+
+relationship AutoDetected_134a92f8-ad0d-4b98-835f-1d0e5bf31cd6
+	fromColumn: FactAirQuality.StationKey
+	toColumn: DimStation.StationKey
+
+relationship AutoDetected_5c52d233-a3e7-4519-8d0e-dbc59ea71700
+	fromColumn: FactAirQuality.TimeKey
+	toColumn: DimTime.TimeKey
+

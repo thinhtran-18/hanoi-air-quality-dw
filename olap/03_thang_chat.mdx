@@ -1,0 +1,4 @@
+-- Roll-up theo năm và tháng; không gộp cùng tháng của các năm khác nhau.
+SELECT {[Measures].[Observation Count], [Measures].[Mean Concentration]} ON COLUMNS,
+NON EMPTY ([Date].[YearNumber].[YearNumber].MEMBERS * [Date].[MonthNumber].[MonthNumber].MEMBERS * [Pollutant].[Pollutant].[Pollutant].MEMBERS) ON ROWS
+FROM [Air Quality];
