@@ -1,0 +1,1041 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/27/2026 12:22:49 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DTSID="{21B91039-70D2-4DFA-9071-67E85A102433}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="00_RunAll"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{6E41CBBE-3B08-41EA-931E-EE76103BF30B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CN_Kho]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DB8AA09C-62D8-4901-85EE-272088D6F634}"
+      DTS:ObjectName="CN_Kho">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=hanoi_air_dw;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-00_RunAll-{DB8AA09C-62D8-4901-85EE-272088D6F634}localhost.hanoi_air_dw;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CN_Nguon]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2E823331-4B48-449B-92B2-95807CDBC129}"
+      DTS:ObjectName="CN_Nguon">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=hanoi_air_vn;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-00_RunAll-{2E823331-4B48-449B-92B2-95807CDBC129}localhost.hanoi_air_vn;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6547C7E3-B31F-4135-9FB8-84870BD35DBA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="BatchId">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract PM to Stage"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0F008526-400B-48FD-B2F0-342D02906875}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract PM to Stage"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Doc du lieu PM tu nguon"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+
+     id AS SourceId,
+
+     location_id AS StationId,
+
+     sensor_id AS SensorId,
+
+     location_name AS StationName,
+
+     observed_at AS ObservedAtSource,
+
+     latitude AS Latitude,
+
+     longitude AS Longitude,
+
+     parameter AS PollutantCode,
+
+     unit AS Unit,
+
+     value AS Value
+
+FROM dbo.air_quality_hourly
+
+WHERE LOWER(LTRIM(RTRIM(parameter))) IN (N'pm25', N'pm10');</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CN_Nguon]"
+                  connectionManagerRefId="Package.ConnectionManagers[CN_Nguon]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[SourceId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[SourceId]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[SourceId]"
+                      name="SourceId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[StationId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[StationId]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[StationId]"
+                      name="StationId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[SensorId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[SensorId]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[SensorId]"
+                      name="SensorId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[StationName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[StationName]"
+                      length="160"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[StationName]"
+                      name="StationName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[ObservedAtSource]"
+                      dataType="dbTimeStampOffset"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[ObservedAtSource]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[ObservedAtSource]"
+                      name="ObservedAtSource"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[Latitude]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[Latitude]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[Latitude]"
+                      name="Latitude"
+                      precision="10"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[Longitude]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[Longitude]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[Longitude]"
+                      name="Longitude"
+                      precision="10"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[PollutantCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[PollutantCode]"
+                      length="20"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[PollutantCode]"
+                      name="PollutantCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[Unit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[Unit]"
+                      length="40"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[Unit]"
+                      name="Unit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[Value]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[Value]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[Value]"
+                      name="Value"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[SourceId]"
+                      dataType="i8"
+                      name="SourceId" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[StationId]"
+                      dataType="i4"
+                      name="StationId" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[SensorId]"
+                      dataType="i4"
+                      name="SensorId" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[StationName]"
+                      dataType="wstr"
+                      length="160"
+                      name="StationName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[ObservedAtSource]"
+                      dataType="dbTimeStampOffset"
+                      name="ObservedAtSource" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[Latitude]"
+                      dataType="numeric"
+                      name="Latitude"
+                      precision="10"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[Longitude]"
+                      dataType="numeric"
+                      name="Longitude"
+                      precision="10"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[PollutantCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="PollutantCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[Unit]"
+                      dataType="wstr"
+                      length="40"
+                      name="Unit" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].ExternalColumns[Value]"
+                      dataType="r8"
+                      name="Value" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[SourceId]"
+                      dataType="i8"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[SourceId]"
+                      name="SourceId" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[StationId]"
+                      dataType="i4"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[StationId]"
+                      name="StationId" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[SensorId]"
+                      dataType="i4"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[SensorId]"
+                      name="SensorId" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[StationName]"
+                      dataType="wstr"
+                      length="160"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[StationName]"
+                      name="StationName" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[ObservedAtSource]"
+                      dataType="dbTimeStampOffset"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[ObservedAtSource]"
+                      name="ObservedAtSource" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[Latitude]"
+                      dataType="numeric"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[Latitude]"
+                      name="Latitude"
+                      precision="10"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[Longitude]"
+                      dataType="numeric"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[Longitude]"
+                      name="Longitude"
+                      precision="10"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[PollutantCode]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[PollutantCode]"
+                      name="PollutantCode" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[Unit]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[Unit]"
+                      name="Unit" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[Value]"
+                      dataType="r8"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[Value]"
+                      name="Value" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract PM to Stage\Ghi du lieu vao staging"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Ghi du lieu vao staging"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[AirQuality]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CN_Kho]"
+                  connectionManagerRefId="Package.ConnectionManagers[CN_Kho]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].Columns[SourceId]"
+                      cachedDataType="i8"
+                      cachedName="SourceId"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[SourceId]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[SourceId]" />
+                    <inputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].Columns[StationId]"
+                      cachedDataType="i4"
+                      cachedName="StationId"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[StationId]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[StationId]" />
+                    <inputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].Columns[SensorId]"
+                      cachedDataType="i4"
+                      cachedName="SensorId"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[SensorId]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[SensorId]" />
+                    <inputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].Columns[StationName]"
+                      cachedDataType="wstr"
+                      cachedLength="160"
+                      cachedName="StationName"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[StationName]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[StationName]" />
+                    <inputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].Columns[ObservedAtSource]"
+                      cachedDataType="dbTimeStampOffset"
+                      cachedName="ObservedAtSource"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[ObservedAtSource]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[ObservedAtSource]" />
+                    <inputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].Columns[Latitude]"
+                      cachedDataType="numeric"
+                      cachedName="Latitude"
+                      cachedPrecision="10"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[Latitude]" />
+                    <inputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].Columns[Longitude]"
+                      cachedDataType="numeric"
+                      cachedName="Longitude"
+                      cachedPrecision="10"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[Longitude]" />
+                    <inputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].Columns[PollutantCode]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PollutantCode"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[PollutantCode]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[PollutantCode]" />
+                    <inputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].Columns[Unit]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="Unit"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[Unit]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[Unit]" />
+                    <inputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].Columns[Value]"
+                      cachedDataType="r8"
+                      cachedName="Value"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[Value]"
+                      lineageId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output].Columns[Value]" />
+                    <inputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].Columns[BatchId]"
+                      cachedDataType="guid"
+                      cachedName="BatchId"
+                      externalMetadataColumnId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[BatchId]"
+                      lineageId="Package\Extract PM to Stage\Them BatchId.Outputs[Derived Column Output].Columns[BatchId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[StageRowId]"
+                      dataType="i8"
+                      name="StageRowId" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[BatchId]"
+                      dataType="guid"
+                      name="BatchId" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[SourceId]"
+                      dataType="i8"
+                      name="SourceId" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[StationId]"
+                      dataType="i4"
+                      name="StationId" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[SensorId]"
+                      dataType="i4"
+                      name="SensorId" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[StationName]"
+                      dataType="wstr"
+                      length="160"
+                      name="StationName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[ObservedAtSource]"
+                      dataType="dbTimeStampOffset"
+                      name="ObservedAtSource"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                      dataType="numeric"
+                      name="Latitude"
+                      precision="10"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                      dataType="numeric"
+                      name="Longitude"
+                      precision="10"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[PollutantCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="PollutantCode" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[Unit]"
+                      dataType="wstr"
+                      length="40"
+                      name="Unit" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[Value]"
+                      dataType="r8"
+                      name="Value" />
+                    <externalMetadataColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input].ExternalColumns[ExtractedAtUTC]"
+                      dataType="dbTimeStamp2"
+                      name="ExtractedAtUTC"
+                      scale="7" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract PM to Stage\Ghi du lieu vao staging.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Ghi du lieu vao staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract PM to Stage\Ghi du lieu vao staging.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract PM to Stage\Them BatchId"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Them BatchId"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract PM to Stage\Them BatchId.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract PM to Stage\Them BatchId.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Extract PM to Stage\Them BatchId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Them BatchId.Outputs[Derived Column Output].Columns[BatchId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Extract PM to Stage\Them BatchId.Outputs[Derived Column Output].Columns[BatchId]"
+                      name="BatchId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_GUID)("{" + @[User::BatchId] + "}")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_GUID)("{" + @[User::BatchId] + "}")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract PM to Stage\Them BatchId.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Extract PM to Stage\Them BatchId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Them BatchId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract PM to Stage\Them BatchId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract PM to Stage\Them BatchId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract PM to Stage\Them BatchId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract PM to Stage.Paths[Derived Column Output]"
+              endId="Package\Extract PM to Stage\Ghi du lieu vao staging.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Extract PM to Stage\Them BatchId.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Extract PM to Stage.Paths[OLE DB Source Output]"
+              endId="Package\Extract PM to Stage\Them BatchId.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Extract PM to Stage\Doc du lieu PM tu nguon.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\FailStagedBatch"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2FF77AA9-FAF4-470A-BDF7-896FA5E6B2E2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FailStagedBatch"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DB8AA09C-62D8-4901-85EE-272088D6F634}"
+          SQLTask:SqlStatementSource="DECLARE @BatchId uniqueidentifier = CONVERT(uniqueidentifier, ?);&#xA;EXEC etl.usp_FailStagedBatch&#xA;    @BatchId = @BatchId,&#xA;    @Reason = N'SSIS Data Flow failed. Xem Progress de biet chi tiet.';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="36" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ProcessStagedBatch"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A904FA88-D66B-4E60-85CB-5795AC95B321}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ProcessStagedBatch"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DB8AA09C-62D8-4901-85EE-272088D6F634}"
+          SQLTask:SqlStatementSource="DECLARE @BatchId uniqueidentifier = CONVERT(uniqueidentifier, ?);&#xA;EXEC etl.usp_ProcessStagedBatch @BatchId = @BatchId;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::BatchId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="36" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\StartBatch"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6C513828-050D-4C3F-AA02-B21C915CE51A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="StartBatch"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DB8AA09C-62D8-4901-85EE-272088D6F634}"
+          SQLTask:SqlStatementSource="EXEC etl.usp_StartSSISBatch;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::BatchId" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{EE9BC943-46A7-486C-A52C-481BA7F6481D}"
+      DTS:From="Package\StartBatch"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Extract PM to Stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C1745805-D534-4D65-937D-266D34310A54}"
+      DTS:From="Package\Extract PM to Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\ProcessStagedBatch" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{32992906-F4F1-4451-9139-0A699AB79311}"
+      DTS:From="Package\Extract PM to Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\FailStagedBatch"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\Extract PM to Stage"
+          TopLeft="160.49999307096,91.2999959087373" />
+        <NodeLayout
+          Size="128,42.6666666666667"
+          Id="Package\StartBatch"
+          TopLeft="448.749979939312,33.7999983882905" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="448.749979939312,55.1333317216238">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-116.249986868352,57.4999975204468"
+              Start="0,0"
+              End="-108.749986868352,57.4999975204468">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-54.1249934341761,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-54.1249934341761,0"
+                    Point2="-58.1249934341761,0"
+                    Point3="-58.1249934341761,4" />
+                  <mssgle:LineSegment
+                    End="-58.1249934341761,53.4999975204468" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-58.1249934341761,53.4999975204468"
+                    Point2="-58.1249934341761,57.4999975204468"
+                    Point3="-62.1249934341761,57.4999975204468" />
+                  <mssgle:LineSegment
+                    End="-108.749986868352,57.4999975204468" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\ProcessStagedBatch"
+          TopLeft="47.4999978765847,249.599988098145" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="219.166659737627,133.966662575404">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-84.3333285277089,115.633325522741"
+              Start="0,0"
+              End="-84.3333285277089,108.133325522741">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.8927771705124" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.8927771705124"
+                    Point2="0,46.8927771705124"
+                    Point3="-4,46.8927771705124" />
+                  <mssgle:LineSegment
+                    End="-80.3333285277089,46.8927771705124" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-80.3333285277089,46.8927771705124"
+                    Point2="-84.3333285277089,46.8927771705124"
+                    Point3="-84.3333285277089,50.8927771705124" />
+                  <mssgle:LineSegment
+                    End="-84.3333285277089,108.133325522741" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\FailStagedBatch"
+          TopLeft="304.999986365438,249.599988098145" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="273.833326404294,133.966662575404">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="108.499993294478,115.633325522741"
+              Start="0,0"
+              End="108.499993294478,108.133325522741">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.8927771705125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.8927771705125"
+                    Point2="0,46.8927771705125"
+                    Point3="4,46.8927771705125" />
+                  <mssgle:LineSegment
+                    End="104.499993294478,46.8927771705125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="104.499993294478,46.8927771705125"
+                    Point2="108.499993294478,46.8927771705125"
+                    Point3="108.499993294478,50.8927771705125" />
+                  <mssgle:LineSegment
+                    End="108.499993294478,108.133325522741" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="39.0086489909889,51.8927771705125,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract PM to Stage">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="196,42.6666666666667"
+          Id="Package\Extract PM to Stage\Doc du lieu PM tu nguon"
+          TopLeft="346.87498449348,46.1499977993966" />
+        <NodeLayout
+          Size="145.333333333334,42.6666666666667"
+          Id="Package\Extract PM to Stage\Them BatchId"
+          TopLeft="374.999983236194,172.899991755486" />
+        <EdgeLayout
+          Id="Package\Extract PM to Stage.Paths[OLE DB Source Output]"
+          TopLeft="446.27081719817,88.8166644660633">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,84.0833272894226"
+              Start="0,0"
+              End="0,76.5833272894226">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.5833272894226" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="188,42.6666666666667"
+          Id="Package\Extract PM to Stage\Ghi du lieu vao staging"
+          TopLeft="56.2499974854291,215.249989926815" />
+        <EdgeLayout
+          Id="Package\Extract PM to Stage.Paths[Derived Column Output]"
+          TopLeft="374.999983236194,194.233325088819">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-130.749985750765,42.3499981713296"
+              Start="0,0"
+              End="-123.249985750765,42.3499981713296">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-61.3749928753825,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-61.3749928753825,0"
+                    Point2="-65.3749928753825,0"
+                    Point3="-65.3749928753825,4" />
+                  <mssgle:LineSegment
+                    End="-65.3749928753825,38.3499981713296" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-65.3749928753825,38.3499981713296"
+                    Point2="-65.3749928753825,42.3499981713296"
+                    Point3="-69.3749928753825,42.3499981713296" />
+                  <mssgle:LineSegment
+                    End="-123.249985750765,42.3499981713296" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract PM to Stage\Doc du lieu PM tu nguon">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract PM to Stage\Ghi du lieu vao staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
