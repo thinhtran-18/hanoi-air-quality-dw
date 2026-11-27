@@ -1,0 +1,91 @@
+{
+  "source_sha256": "ba914a66bea882b5593948b5ef96b774fa5e96e55370874dd9d89dcf203d73c8",
+  "source_rows": 23036,
+  "scope_rows": 11500,
+  "stations": [
+    "2161299",
+    "2161301"
+  ],
+  "sensors": [
+    "7771996",
+    "7772005",
+    "7772039",
+    "7772073"
+  ],
+  "units": [
+    "µg/m³"
+  ],
+  "duplicate_grain_rows": 0,
+  "max_rows_same_local_hour": 4,
+  "hours_with_multiple_rows": 3651,
+  "example_same_local_hour": [
+    {
+      "location_id": "2161299",
+      "sensors_id": "7771996",
+      "location": "Hàng Đậu-2131275",
+      "datetime": "2024-01-29T14:00:00+07:00",
+      "lat": "21.0399",
+      "lon": "105.8473",
+      "parameter": "pm25",
+      "units": "µg/m³",
+      "value": "57.8"
+    },
+    {
+      "location_id": "2161299",
+      "sensors_id": "7772005",
+      "location": "Hàng Đậu-2131275",
+      "datetime": "2024-01-29T14:00:00+07:00",
+      "lat": "21.0399",
+      "lon": "105.8473",
+      "parameter": "pm10",
+      "units": "µg/m³",
+      "value": "145.7"
+    },
+    {
+      "location_id": "2161301",
+      "sensors_id": "7772039",
+      "location": "Khương Trung-2131277",
+      "datetime": "2024-01-29T14:00:00+07:00",
+      "lat": "20.9949",
+      "lon": "105.8167",
+      "parameter": "pm10",
+      "units": "µg/m³",
+      "value": "53"
+    },
+    {
+      "location_id": "2161301",
+      "sensors_id": "7772073",
+      "location": "Khương Trung-2131277",
+      "datetime": "2024-01-29T14:00:00+07:00",
+      "lat": "20.9949",
+      "lon": "105.8167",
+      "parameter": "pm25",
+      "units": "µg/m³",
+      "value": "40.6"
+    }
+  ],
+  "midnight_example": [
+    {
+      "source": "2024-02-24T00:00:00+07:00",
+      "utc": "2024-02-23T17:00:00+00:00",
+      "local_date_key": 20240224,
+      "local_time_key": 0
+    }
+  ],
+  "dimension_columns": {
+    "DimDate": 8,
+    "DimTime": 5,
+    "DimStation": 7,
+    "DimPollutant": 4,
+    "DimSensor": 3,
+    "FactAirQuality": 13
+  },
+  "expected_dimensions": {
+    "DimDate": 366,
+    "DimTime": 24,
+    "DimStation": 2,
+    "DimPollutant": 2,
+    "DimSensor": 4
+  },
+  "status": "PASS - thiết kế và kiểm tra CSV; chưa tạo bảng/nạp fact"
+}

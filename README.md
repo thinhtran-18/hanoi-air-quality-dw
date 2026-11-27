@@ -8,10 +8,21 @@ Công nghệ dự kiến: SQL Server, Visual Studio/SSIS và Power BI.
 
 ## Trạng thái
 
-Repo hiện chứa bộ khung thư mục. Các thành viên bổ sung dữ liệu, tài liệu,
-script SQL, project ETL và dashboard vào khu vực phụ trách.
-Các file `.gitkeep` chỉ giúp Git lưu thư mục trống; có thể xóa khi thư mục
-đã có file sản phẩm. Repo chưa có quy trình chạy đồ án hoàn chỉnh.
+Đã hoàn thành bước 1–4: chốt phạm vi, kiểm tra môi trường, đối soát nguồn,
+nạp bảng SQL nguồn và khảo sát chất lượng. Đã hoàn thành **bước 5: thiết kế
+Star Schema**, gồm sơ đồ chỉnh sửa được, PNG, từ điển 6 bảng / 40 cột và
+kiểm chứng grain trên CSV lẫn SQL Server.
+
+- [Thiết kế và điều kiện hoàn thành bước 5](docs/thiet_ke/thiet_ke_star_schema.md)
+- [Sơ đồ PNG](docs/thiet_ke/star_schema.png) · [Bản draw.io](docs/thiet_ke/star_schema.drawio)
+- [Từ điển dữ liệu](docs/thiet_ke/tu_dien_du_lieu.md)
+- [Báo cáo bước 5](report/cac_phan/02_thiet_ke_kho.md)
+
+Bộ nguồn có 23.036 phép đo; phạm vi kho PM2.5/PM10 có 11.500 phép đo.
+Đây là dữ liệu lịch sử không liên tục, chỉ phủ khoảng 28–37% giờ năm 2024
+theo từng trạm/chất; giờ thiếu không phải 0. Chưa triển khai bảng kho, ETL,
+OLAP hoặc dashboard. SSIS chưa xác nhận cài thành công; xử lý khi đến bước
+cần dùng. Repo chưa có quy trình chạy đồ án hoàn chỉnh.
 
 ## Cấu trúc
 

@@ -1,0 +1,41 @@
+﻿Bang,Cot,Kieu_SQL_Server,Cho_NULL,Khoa,Y_nghia,Nguon_quy_tac
+DimDate,DateKey,int,Không,PK,Khóa ngày YYYYMMDD,Từ ObservedAtLocal
+DimDate,FullDate,date,Không,UQ,Ngày địa phương,CAST(ObservedAtLocal AS date)
+DimDate,DayOfMonth,tinyint,Không,—,Ngày trong tháng 1–31,DAY(FullDate)
+DimDate,MonthNumber,tinyint,Không,—,Tháng 1–12,MONTH(FullDate)
+DimDate,QuarterNumber,tinyint,Không,—,Quý 1–4,"DATEPART(quarter, FullDate)"
+DimDate,YearNumber,smallint,Không,—,Năm địa phương,YEAR(FullDate)
+DimDate,DayOfWeekISO,tinyint,Không,—,Thứ Hai=1 đến Chủ Nhật=7,"Tính từ lịch, độc lập SET DATEFIRST"
+DimDate,DayName,nvarchar(12),Không,—,Tên thứ tiếng Việt,Ánh xạ DayOfWeekISO
+DimTime,TimeKey,int,Không,PK,Khóa giờ HHMMSS dạng số; 00:00:00 = 0,Từ ObservedAtLocal; Hour*10000+Minute*100+Second
+DimTime,FullTime,time(0),Không,UQ,Giờ địa phương,CAST(ObservedAtLocal AS time(0))
+DimTime,HourNumber,tinyint,Không,—,Giờ 0–23,"DATEPART(hour, ObservedAtLocal)"
+DimTime,MinuteNumber,tinyint,Không,—,Phút 0–59; hiện tại 0,"DATEPART(minute, ObservedAtLocal)"
+DimTime,SecondNumber,tinyint,Không,—,Giây 0–59; hiện tại 0,"DATEPART(second, ObservedAtLocal)"
+DimStation,StationKey,"int IDENTITY(1,1)",Không,PK,"Khóa nội bộ, không phải mã OpenAQ",Sinh tại kho
+DimStation,StationId,int,Không,UQ / NK,Mã location OpenAQ,SQL: location_id; CSV: location_id
+DimStation,StationName,nvarchar(160),Không,—,"Tên đầy đủ như nguồn, giữ hậu tố",SQL: location_name; CSV: location
+DimStation,Latitude,"decimal(10,6)",Có,—,Vĩ độ,SQL: latitude; CSV: lat
+DimStation,Longitude,"decimal(10,6)",Có,—,Kinh độ,SQL: longitude; CSV: lon
+DimStation,CityName,nvarchar(80),Không,—,Thành phố theo phạm vi đã chốt,Hằng cấu hình: Hà Nội
+DimStation,DistrictName,nvarchar(80),Có,—,Địa bàn quận/huyện khi có metadata xác minh,Nguồn hiện tại không có: NULL; không suy đoán
+DimPollutant,PollutantKey,"int IDENTITY(1,1)",Không,PK,Khóa chất nội bộ,Sinh tại kho
+DimPollutant,PollutantCode,nvarchar(20),Không,UQ / NK,Mã chất: pm25 hoặc pm10,SQL/CSV: parameter; chuẩn hóa chữ thường
+DimPollutant,PollutantName,nvarchar(40),Không,—,Tên hiển thị PM2.5 hoặc PM10,Ánh xạ cấu hình từ PollutantCode
+DimPollutant,Unit,nvarchar(40),Không,—,Đơn vị chuẩn µg/m³,SQL: unit; CSV: units; kiểm tra trước nạp
+DimSensor,SensorKey,"int IDENTITY(1,1)",Không,PK,Khóa cảm biến nội bộ,Sinh tại kho
+DimSensor,SensorId,int,Không,UQ / NK,Mã cảm biến OpenAQ,SQL: sensor_id; CSV: sensors_id
+DimSensor,SensorDescription,nvarchar(255),Có,—,"Mô tả phục vụ truy vết, không suy ra model/hiệu chuẩn",Sinh mô tả từ SensorId; metadata thực tế chưa có
+FactAirQuality,AirQualityKey,"bigint IDENTITY(1,1)",Không,PK,Khóa kỹ thuật dòng fact; không thay khóa grain,Sinh tại kho
+FactAirQuality,DateKey,int,Không,FK → DimDate,Ngày địa phương của phép đo,Tra DimDate từ ObservedAtLocal
+FactAirQuality,TimeKey,int,Không,FK → DimTime,Giờ địa phương của phép đo,Tra DimTime từ ObservedAtLocal
+FactAirQuality,StationKey,int,Không,FK → DimStation; UQ grain,Trạm của phép đo,Tra StationId bằng location_id
+FactAirQuality,PollutantKey,int,Không,FK → DimPollutant; UQ grain,Chất của phép đo,Tra PollutantCode bằng parameter
+FactAirQuality,SensorKey,int,Không,FK → DimSensor; UQ grain,Cảm biến của phép đo,Tra SensorId bằng SQL sensor_id / CSV sensors_id
+FactAirQuality,ObservedAtSource,datetimeoffset(0),Không,—,Thời điểm nguồn giữ nguyên offset,SQL: observed_at; CSV: datetime
+FactAirQuality,ObservedAtUTC,datetime2(0),Không,UQ grain,"Thời điểm UTC, quy ước mọi giá trị ở UTC","CAST(SWITCHOFFSET(ObservedAtSource, +00:00) AS datetime2(0))"
+FactAirQuality,ObservedAtLocal,datetimeoffset(0),Không,—,"Thời điểm phân tích, luôn có offset +07:00","SWITCHOFFSET(ObservedAtSource, +07:00)"
+FactAirQuality,Value,float(53),Có,Measure,Nồng độ theo Unit của chiều chất; không cộng nồng độ,"SQL/CSV: value; giữ độ chính xác kiểu nguồn, không làm tròn khi nạp"
+FactAirQuality,IsValid,bit,Không,—,Đạt quy tắc kỹ thuật đã chốt; không chứng nhận hiệu chuẩn,ETL sinh theo quy tắc tài liệu; không có DEFAULT 1
+FactAirQuality,SourceId,bigint,Không,Lineage,ID bản ghi trong bảng SQL nguồn hiện hành,"SQL: dbo.air_quality_hourly.id; CSV không có, không lấy số dòng CSV"
+FactAirQuality,BatchId,uniqueidentifier,Không,Lineage,Mã lần nạp ETL,"ETL sinh một UUID mỗi lần chạy, dùng chung các dòng của lần nạp"
