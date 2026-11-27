@@ -55,44 +55,74 @@ bản Power BI nháp (`dashboard/HanoiAirOLAP.pbip`). Xem
 
 ```text
 hanoi-air-quality-dw/
-├── README.md
-├── .gitignore
-├── docs/
-│   └── thiet_ke/
-├── data/
-│   ├── source/
-│   └── raw/
-├── sql/
-│   ├── source/
-│   ├── schema/
-│   ├── olap/
-│   └── checks/
-├── etl/
-├── dashboard/
-├── tools/
-└── report/
-    ├── cac_phan/
-    └── minh_chung/
+├── README.md                                  # Tổng quan dự án, trạng thái và cấu trúc repo
+├── AGENTS.md                                  # Quy tắc làm việc, quyết định kỹ thuật và tiến độ
+├── LICENSE                                    # Giấy phép mã nguồn
+├── .gitignore                                 # Loại trừ tệp tạm (.local, bin, obj, .vs)
+├── docs/                                      # Tài liệu dự án & thiết kế mô hình
+│   ├── pham_vi.md                             # Chốt phạm vi trạm, năm 2024, PM2.5/PM10
+│   ├── moi_truong.md                          # Phiên bản công cụ & kiểm tra môi trường
+│   ├── huong_dan_buoc_9_ssis.md               # Hướng dẫn cấu hình & chạy package SSIS
+│   ├── De_xuat_de_tai_*.docx                  # Tài liệu đề xuất đề tài
+│   ├── Phan_cong_nhom_*.docx                  # Bảng phân công nhóm
+│   └── thiet_ke/                              # Sơ đồ Star, Snowflake, Galaxy & từ điển
+│       ├── thiet_ke_star_schema.md            # Đặc tả grain, khóa, thời gian Star Schema
+│       ├── so_sanh_ba_luoc_do.md              # So sánh Star, Snowflake và Galaxy
+│       ├── tu_dien_du_lieu.md / .csv          # Từ điển 6 bảng / 40 cột Star Schema
+│       ├── star_schema.drawio / .png          # Sơ đồ Star Schema (mô hình triển khai chính)
+│       ├── snowflake_schema.drawio / .png     # Sơ đồ Snowflake (phương án tham khảo)
+│       └── galaxy_schema.drawio / .png        # Sơ đồ Galaxy (phương án mở rộng độ phủ)
+├── data/                                      # Dữ liệu nguồn OpenAQ & kiểm chứng toàn vẹn
+│   ├── README.md                              # Hướng dẫn nguồn và cách tạo CSV ghép
+│   ├── checksums.sha256                       # Mã băm SHA-256 đối chiếu 325 tệp gốc, CSV, SQL
+│   ├── source/                                # Danh mục nguồn, manifest và CSV ghép
+│   └── raw/                                   # 325 tệp .csv.gz gốc (giữ nguyên tên)
+├── sql/                                       # Toàn bộ script T-SQL (nguồn, kho, ETL, OLAP, test)
+│   ├── source/                                # Script tạo database nguồn hanoi_air_vn (23.036 dòng)
+│   ├── schema/                                # DDL kho hanoi_air_dw (01–05, 00_chay_buoc6_ssms.sql)
+│   ├── etl/                                   # Stored procedures chuẩn hóa & nạp kho (01–03)
+│   ├── olap/                                  # 8 truy vấn SQL OLAP Bước 11 (01–08) & README.md
+│   └── checks/                                # Script kiểm tra nguồn, cấu trúc, grain, ETL, kho
+├── etl/                                       # Project SSIS (Visual Studio)
+│   └── HanoiAirETL/                           # Solution & project HanoiAirETL (00_RunAll.dtsx)
+├── olap/                                      # Cube SSAS Multidimensional & truy vấn MDX
+│   ├── README.md                              # Mô tả cube HanoiAirOLAP và cách triển khai
+│   ├── tao_cube.ps1                           # Script AMO dựng & process cube 5 chiều
+│   ├── cap_quyen_doc_ssas.sql                 # Cấp quyền SELECT cho dịch vụ SSAS
+│   ├── HanoiAirOLAP.xmla                      # Định nghĩa XMLA xuất từ server SSAS
+│   ├── 01_chat.mdx / 02_tram_chat.mdx / 03_thang_chat.mdx  # 3 truy vấn MDX đối soát SQL
+│   ├── HanoiAirCube/                          # Solution & project khung rỗng ban đầu
+│   └── HanoiAirCubeImported/                  # Project nhập từ SSAS (5 chiều gồm DimSensor)
+├── dashboard/                                 # Mô hình & báo cáo Power BI
+│   ├── HanoiAirOLAP.pbip                      # Project Power BI (PBIP) bước 11
+│   ├── HanoiAirOLAP.pbix                      # Tệp Power BI Desktop nhị phân
+│   ├── HanoiAirOLAP.SemanticModel/            # Định nghĩa TMDL 6 bảng, 5 quan hệ, DAX measures
+│   └── HanoiAirOLAP.Report/                   # Định nghĩa PBIR trang báo cáo & visual
+├── tools/                                     # Script Python đối soát dữ liệu, kiểm tra & vẽ sơ đồ
+└── report/                                    # Báo cáo tiến độ từng bước & minh chứng kiểm chứng
+    ├── cac_phan/                              # Báo cáo chi tiết Bước 4–11 (01_du_lieu..07_olap_buoc11.md)
+    └── minh_chung/                            # Kết quả CSV, JSON, RPT, ảnh chụp SSMS/SSIS/SSAS/Power BI
 ```
 
 ## Nội dung từng thư mục
 
-| Thư mục | Nội dung thành viên sẽ bổ sung |
+| Thư mục | Nội dung chính |
 | --- | --- |
-| `docs/` | Đề xuất đề tài, phân công, hướng dẫn chạy và quy ước dữ liệu |
-| `docs/thiet_ke/` | Sơ đồ Star Schema, đặc tả grain và từ điển dữ liệu |
+| `docs/` | Đề xuất đề tài, phân công, phạm vi, môi trường và hướng dẫn chạy |
+| `docs/thiet_ke/` | Sơ đồ Star/Snowflake/Galaxy, đặc tả grain và từ điển dữ liệu |
 | `data/source/` | CSV ghép và manifest ghi đường dẫn dữ liệu nguồn |
 | `data/raw/` | Các tệp CSV nén gốc; giữ nguyên tên để đối chiếu manifest |
-| `sql/source/` | Script T-SQL tạo và nạp dữ liệu nguồn |
-| `sql/schema/` | Script tạo database kho, staging, dimensions và fact |
-| `sql/olap/` | Truy vấn phân tích và mô tả kết quả |
+| `sql/source/` | Script T-SQL tạo và nạp dữ liệu nguồn `hanoi_air_vn` |
+| `sql/schema/` | Script tạo database kho `hanoi_air_dw`, staging, dimensions và fact |
+| `sql/etl/` | Stored procedures chuẩn hóa staging và nạp kho |
+| `sql/olap/` | 8 truy vấn phân tích OLAP và mô tả kết quả |
 | `sql/checks/` | Kiểm tra dữ liệu nguồn, kho dữ liệu và đối soát ETL |
-| `etl/` | Solution, project, packages SSIS và hướng dẫn thực thi |
-| `dashboard/` | Power BI, công thức DAX và đối soát chỉ số |
-| `tools/` | Công cụ tải, kiểm tra dữ liệu và tạo T-SQL |
-| `report/cac_phan/` | Nội dung báo cáo theo từng phần việc |
-| `report/minh_chung/` | Ảnh và kết quả kiểm chứng dùng trong báo cáo |
-| `report/` | Báo cáo và slide tổng hợp |
+| `etl/` | Solution, project và package SSIS `00_RunAll.dtsx` |
+| `olap/` | Cube SSAS 5 chiều (`HanoiAirOLAP`), script AMO, XMLA và truy vấn MDX |
+| `dashboard/` | Power BI PBIP/PBIX, mô hình TMDL, công thức DAX và báo cáo |
+| `tools/` | Công cụ Python kiểm tra dữ liệu, cấu trúc kho và tạo sơ đồ |
+| `report/cac_phan/` | Nội dung báo cáo theo từng bước triển khai |
+| `report/minh_chung/` | Ảnh chụp và kết quả kiểm chứng dùng trong báo cáo |
 
 ## Phối hợp trên GitHub
 
