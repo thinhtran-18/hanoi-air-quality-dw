@@ -1,0 +1,18 @@
+case_id,bo_loc,cong_thuc,sql,powerbi,sai_lech,dung_sai,ket_qua,commit
+C01_NGUON_HASH,Toàn bộ 325 tệp .csv.gz + CSV ghép + SQL nguồn (data/checksums.sha256),Đối chiếu SHA-256 toàn bộ danh sách,327/327 khớp (0 lỗi),327 tệp kiểm tra đạt,0,0,PASS,8cbebe3
+C02_NGUON_SO_DONG,Toàn bộ nguồn hanoi_air_vn.dbo.air_quality_hourly (4 chất),COUNT_BIG(*) nguồn và phạm vi PM2.5/PM10,23036 nguồn / 11500 PM,11500 PM hợp lệ vào kho,0,0,PASS,8cbebe3
+C03_KHO_FACT_TONG,FactAirQuality với IsValid = 1 (không lọc thêm),Số phép đo hợp lệ = COUNTROWS(FactAirQuality[IsValid=TRUE]),11500,11500,0,0,PASS,8cbebe3
+C04_PBI_KHONG_CHON_CHAT,Bỏ chọn chất trên báo cáo (tất cả trạm và ngày),Nồng độ trung bình = IF(HASONEVALUE(PollutantCode) ... BLANK()),NULL (không trộn),BLANK (không trộn),0,0,PASS,8cbebe3
+C05_PBI_PM25_TOAN_BO,Tất cả trạm và ngày; cố định chất pm25,PM2.5 trung bình (µg/m³),38.74945556,38.74945556,3.90E-14,0.000001,PASS,8cbebe3
+C06_PBI_PM10_TOAN_BO,Tất cả trạm và ngày; cố định chất pm10,PM10 trung bình (µg/m³),63.82399583,63.82399583,2.30E-14,0.000001,PASS,8cbebe3
+C07_PBI_1NGAY_1TRAM,Ngày 2024-01-29; Hàng Đậu (2161299); pm25,Số phép đo / Nồng độ trung bình,2 / 62.049999999999997,2 / 62.05,3.00E-15,0.000001,PASS,8cbebe3
+C08_PBI_1THANG_1TRAM,Tháng 10/2024; Khương Trung (2161301); pm10,Số phép đo / Giờ thiếu / Độ phủ / Nồng độ TB,728 / 16 / 0.978494623655 / 38.859615384615381,728 / 16 / 0.978494623655914 / 38.8596153846154,1.90E-14,0.000001,PASS,8cbebe3
+C09_PBI_BIEN_RONG,Tháng 8/2024 (khoảng trống dữ liệu); pm25,Số phép đo / Nồng độ trung bình / Thông báo ghép cặp,0 / NULL / 0 giờ chung,BLANK / BLANK / Không có giờ chung,0,0,PASS,8cbebe3
+C10_PBI_THEO_GIO,Giờ 08:00 (HourNumber=8); Hàng Đậu; pm25,Số phép đo / Nồng độ trung bình,144 / 50.07708333333332,144 / 50.0770833333333,2.00E-14,0.000001,PASS,8cbebe3
+C11_THOI_GIAN_RANH_NGAY,2024-02-24 00:00+07 (UTC 2024-02-23 17:00); Hàng Đậu; pm10,DateKey=20240224; TimeKey=0; Nồng độ trung bình,1 / 74.200000000000003,1 / 74.2,3.00E-15,0.000001,PASS,8cbebe3
+C12_DO_PHU_NAM_HANG_DAU,Cả năm 2024 (8784 giờ); Hàng Đậu; pm25 và pm10,Số giờ trạm-chất / Số giờ thiếu / Độ phủ (%),pm25: 3251/5533/37.01%; pm10: 3253/5531/37.03%,pm25: 3251/5533/0.370105; pm10: 3253/5531/0.370332,0,0.000001,PASS,8cbebe3
+C13_DO_PHU_NAM_KHUONG_TRUNG,Cả năm 2024 (8784 giờ); Khương Trung; pm25 và pm10,Số giờ trạm-chất / Số giờ thiếu / Độ phủ (%),pm25: 2498/6286/28.44%; pm10: 2498/6286/28.44%,pm25: 2498/6286/0.284381; pm10: 2498/6286/0.284381,0,0.000001,PASS,8cbebe3
+C14_GHEP_CAP_PM25,Tập giờ chung 2 trạm cả năm 2024; pm25,Số giờ ghép cặp / TB HĐ / TB KT / Chênh lệch µg/m³,2098 / 42.883841754051538 / 32.466072449952321 / 10.41776930409914,2098 / 42.8838417540515 / 32.4660724499523 / 10.4177693040991,3.80E-14,0.000001,PASS,8cbebe3
+C15_GHEP_CAP_PM10,Tập giờ chung 2 trạm cả năm 2024; pm10,Số giờ ghép cặp / TB HĐ / TB KT / Chênh lệch µg/m³,2098 / 74.396520495710291 / 43.6643469971402 / 30.732173498570095,2098 / 74.3965204957102 / 43.6643469971401 / 30.7321734985701,1.00E-13,0.000001,PASS,8cbebe3
+C16_GHEP_CAP_1NGAY,Ngày 2024-01-29; pm25 (tập giờ riêng 2h vs 3h),Số giờ ghép cặp / TB HĐ / TB KT / Chênh lệch µg/m³,2 / 62.049999999999997 / 47.650000000000006 / 14.399999999999995,2 / 62.05 / 47.65 / 14.4,6.00E-15,0.000001,PASS,8cbebe3
+C17_TAI_LAP_KHO_THU,Database thử độc lập hanoi_air_dw_repro (DDL 01-06 + usp_RunBatch x2),Nạp lần 1 = 11500 mới; Lần 2 = 0 mới / 11500 đã có; View cặp = 2098x2,11500 / 0 mới / 2098x2,Khớp quy trình tái lập,0,0,PASS,8cbebe3

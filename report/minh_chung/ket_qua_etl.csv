@@ -8,7 +8,7 @@ T06,Loi Data Flow thuc te,Chay package voi bieu thuc GUID loi,Batch Failed,Anh B
 T07,Timestamp tong hop ngay moi local,Phan loai trong transaction,UTC ngay truoc va DateKey local,Script kiem tra DateKey va UTC thanh cong,PASS,sql/checks/kiem_thu_buoc7.sql
 T08,Fact hien tai,Kiem tra khoa ngoai va grain,Khong mo coi va khong trung,0 mo coi va khong co nhom trung,PASS,sql/checks/kiem_tra_kho.sql
 T09,Fact va nguon SQL,So sanh cac truong trong script,Khong co dong khac,0 dong khac theo phep so sanh hien tai,PASS co gioi han,sql/checks/kiem_tra_kho.sql
-T10,Kho trong doc lap,Tao kho moi va chay SSIS tu dau,11500 fact va log Success,Chua thuc hien lan kiem thu doc lap,CHUA THU,
+T10,Kho trong doc lap,Tao kho moi hanoi_air_dw_repro va chay DDL 01-06 + usp_RunBatch 2 lan,11500 fact lan 1 va 0 moi lan 2,PASS T-SQL (11500 moi lan 1; 0 moi / 11500 da co lan 2; SSIS chay truc tiep tren kho moi chua chay rieng),PASS co gioi han,report/cac_phan/08_nghiem_thu_buoc15.md
 T11,Bon nhom tram chat,So mau va min max nguon kho,Co mau du nhom va gia tri khop,4 nhom co mau va min max khop,PASS,sql/checks/doi_soat_buoc10.sql
 T12,Thoi gian trong fact,Doi chieu UTC local va DateKey,Khong sai,0 dong sai theo cong thuc truy van,PASS,sql/checks/doi_soat_buoc10.sql
 T13,Batch thanh cong,Kiem tra can doi so dong,Khong sai,0 batch Success sai can doi,PASS,sql/checks/doi_soat_buoc10.sql

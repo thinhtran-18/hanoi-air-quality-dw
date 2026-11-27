@@ -64,8 +64,8 @@ table FactAirQuality
 		formatString: #,##0
 		lineageTag: 8d924811-344f-4187-a2a7-5ec042f0d715
 
-	/// Số giờ thiếu trong ngữ cảnh 1 trạm và 1 chất; trả về BLANK() khi chưa chọn riêng trạm và chất.
-	measure 'Số giờ thiếu' = IF(HASONEVALUE('DimStation'[StationName]) && HASONEVALUE('DimPollutant'[PollutantCode]), [Số giờ kỳ vọng] - [Số giờ trạm-chất], BLANK())
+	/// Số giờ thiếu trong ngữ cảnh 1 trạm và 1 chất có phép đo; trả về BLANK() khi không có dữ liệu hoặc chưa tách riêng trạm–chất.
+	measure 'Số giờ thiếu' = IF(HASONEVALUE('DimStation'[StationName]) && HASONEVALUE('DimPollutant'[PollutantCode]) && NOT ISBLANK([Số giờ trạm-chất]), [Số giờ kỳ vọng] - [Số giờ trạm-chất], BLANK())
 		formatString: #,##0
 		lineageTag: 44147380-272d-4e8f-ba8a-7171709c8301
 

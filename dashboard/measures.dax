@@ -98,7 +98,7 @@ COUNTROWS('DimDate') * 24
 
 Số giờ thiếu =
 IF(
-    HASONEVALUE('DimStation'[StationName]) && HASONEVALUE('DimPollutant'[PollutantCode]),
+    HASONEVALUE('DimStation'[StationName]) && HASONEVALUE('DimPollutant'[PollutantCode]) && NOT ISBLANK([Số giờ trạm-chất]),
     [Số giờ kỳ vọng] - [Số giờ trạm-chất],
     BLANK()
 )
