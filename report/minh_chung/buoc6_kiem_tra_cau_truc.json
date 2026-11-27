@@ -1,0 +1,861 @@
+{
+  "checked_at": "2026-11-27T10:16:11+07:00",
+  "database": "hanoi_air_dw",
+  "status": "PASS",
+  "core_column_comparison": "40/40 match dictionary: name/type/NULL/identity",
+  "row_counts": [
+    {
+      "TableName": "DimDate",
+      "RowsInTable": 366
+    },
+    {
+      "TableName": "DimTime",
+      "RowsInTable": 24
+    },
+    {
+      "TableName": "DimStation",
+      "RowsInTable": 0
+    },
+    {
+      "TableName": "DimPollutant",
+      "RowsInTable": 0
+    },
+    {
+      "TableName": "DimSensor",
+      "RowsInTable": 0
+    },
+    {
+      "TableName": "FactAirQuality",
+      "RowsInTable": 0
+    },
+    {
+      "TableName": "stg.AirQuality",
+      "RowsInTable": 0
+    },
+    {
+      "TableName": "etl.BatchLog",
+      "RowsInTable": 0
+    },
+    {
+      "TableName": "etl.RejectRow",
+      "RowsInTable": 0
+    }
+  ],
+  "source_counts": {
+    "TotalRows": 23036,
+    "PMRows": 11500
+  },
+  "constraints": [
+    {
+      "ConstraintType": "PRIMARY_KEY_CONSTRAINT",
+      "ConstraintCount": 9
+    },
+    {
+      "ConstraintType": "UNIQUE_CONSTRAINT",
+      "ConstraintCount": 6
+    },
+    {
+      "ConstraintType": "FOREIGN_KEY_CONSTRAINT",
+      "ConstraintCount": 8
+    },
+    {
+      "ConstraintType": "CHECK_CONSTRAINT",
+      "ConstraintCount": 26
+    }
+  ],
+  "columns": [
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimDate",
+      "Ordinal": 1,
+      "ColumnName": "DateKey",
+      "SqlType": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "int"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimDate",
+      "Ordinal": 2,
+      "ColumnName": "FullDate",
+      "SqlType": "date",
+      "MaxLength": 3,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "date"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimDate",
+      "Ordinal": 3,
+      "ColumnName": "DayOfMonth",
+      "SqlType": "tinyint",
+      "MaxLength": 1,
+      "Precision": 3,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "tinyint"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimDate",
+      "Ordinal": 4,
+      "ColumnName": "MonthNumber",
+      "SqlType": "tinyint",
+      "MaxLength": 1,
+      "Precision": 3,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "tinyint"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimDate",
+      "Ordinal": 5,
+      "ColumnName": "QuarterNumber",
+      "SqlType": "tinyint",
+      "MaxLength": 1,
+      "Precision": 3,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "tinyint"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimDate",
+      "Ordinal": 6,
+      "ColumnName": "YearNumber",
+      "SqlType": "smallint",
+      "MaxLength": 2,
+      "Precision": 5,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "smallint"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimDate",
+      "Ordinal": 7,
+      "ColumnName": "DayOfWeekISO",
+      "SqlType": "tinyint",
+      "MaxLength": 1,
+      "Precision": 3,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "tinyint"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimDate",
+      "Ordinal": 8,
+      "ColumnName": "DayName",
+      "SqlType": "nvarchar",
+      "MaxLength": 24,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "nvarchar(12)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimPollutant",
+      "Ordinal": 1,
+      "ColumnName": "PollutantKey",
+      "SqlType": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true,
+      "TypeDisplay": "int IDENTITY(1,1)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimPollutant",
+      "Ordinal": 2,
+      "ColumnName": "PollutantCode",
+      "SqlType": "nvarchar",
+      "MaxLength": 40,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "nvarchar(20)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimPollutant",
+      "Ordinal": 3,
+      "ColumnName": "PollutantName",
+      "SqlType": "nvarchar",
+      "MaxLength": 80,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "nvarchar(40)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimPollutant",
+      "Ordinal": 4,
+      "ColumnName": "Unit",
+      "SqlType": "nvarchar",
+      "MaxLength": 80,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "nvarchar(40)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimSensor",
+      "Ordinal": 1,
+      "ColumnName": "SensorKey",
+      "SqlType": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true,
+      "TypeDisplay": "int IDENTITY(1,1)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimSensor",
+      "Ordinal": 2,
+      "ColumnName": "SensorId",
+      "SqlType": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "int"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimSensor",
+      "Ordinal": 3,
+      "ColumnName": "SensorDescription",
+      "SqlType": "nvarchar",
+      "MaxLength": 510,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false,
+      "TypeDisplay": "nvarchar(255)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimStation",
+      "Ordinal": 1,
+      "ColumnName": "StationKey",
+      "SqlType": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true,
+      "TypeDisplay": "int IDENTITY(1,1)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimStation",
+      "Ordinal": 2,
+      "ColumnName": "StationId",
+      "SqlType": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "int"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimStation",
+      "Ordinal": 3,
+      "ColumnName": "StationName",
+      "SqlType": "nvarchar",
+      "MaxLength": 320,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "nvarchar(160)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimStation",
+      "Ordinal": 4,
+      "ColumnName": "Latitude",
+      "SqlType": "decimal",
+      "MaxLength": 9,
+      "Precision": 10,
+      "Scale": 6,
+      "IsNullable": true,
+      "IsIdentity": false,
+      "TypeDisplay": "decimal(10,6)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimStation",
+      "Ordinal": 5,
+      "ColumnName": "Longitude",
+      "SqlType": "decimal",
+      "MaxLength": 9,
+      "Precision": 10,
+      "Scale": 6,
+      "IsNullable": true,
+      "IsIdentity": false,
+      "TypeDisplay": "decimal(10,6)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimStation",
+      "Ordinal": 6,
+      "ColumnName": "CityName",
+      "SqlType": "nvarchar",
+      "MaxLength": 160,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "nvarchar(80)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimStation",
+      "Ordinal": 7,
+      "ColumnName": "DistrictName",
+      "SqlType": "nvarchar",
+      "MaxLength": 160,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false,
+      "TypeDisplay": "nvarchar(80)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimTime",
+      "Ordinal": 1,
+      "ColumnName": "TimeKey",
+      "SqlType": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "int"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimTime",
+      "Ordinal": 2,
+      "ColumnName": "FullTime",
+      "SqlType": "time",
+      "MaxLength": 3,
+      "Precision": 8,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "time(0)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimTime",
+      "Ordinal": 3,
+      "ColumnName": "HourNumber",
+      "SqlType": "tinyint",
+      "MaxLength": 1,
+      "Precision": 3,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "tinyint"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimTime",
+      "Ordinal": 4,
+      "ColumnName": "MinuteNumber",
+      "SqlType": "tinyint",
+      "MaxLength": 1,
+      "Precision": 3,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "tinyint"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "DimTime",
+      "Ordinal": 5,
+      "ColumnName": "SecondNumber",
+      "SqlType": "tinyint",
+      "MaxLength": 1,
+      "Precision": 3,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "tinyint"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 1,
+      "ColumnName": "AirQualityKey",
+      "SqlType": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": true,
+      "TypeDisplay": "bigint IDENTITY(1,1)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 2,
+      "ColumnName": "DateKey",
+      "SqlType": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "int"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 3,
+      "ColumnName": "TimeKey",
+      "SqlType": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "int"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 4,
+      "ColumnName": "StationKey",
+      "SqlType": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "int"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 5,
+      "ColumnName": "PollutantKey",
+      "SqlType": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "int"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 6,
+      "ColumnName": "SensorKey",
+      "SqlType": "int",
+      "MaxLength": 4,
+      "Precision": 10,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "int"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 7,
+      "ColumnName": "ObservedAtSource",
+      "SqlType": "datetimeoffset",
+      "MaxLength": 8,
+      "Precision": 26,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "datetimeoffset(0)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 8,
+      "ColumnName": "ObservedAtUTC",
+      "SqlType": "datetime2",
+      "MaxLength": 6,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "datetime2(0)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 9,
+      "ColumnName": "ObservedAtLocal",
+      "SqlType": "datetimeoffset",
+      "MaxLength": 8,
+      "Precision": 26,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "datetimeoffset(0)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 10,
+      "ColumnName": "Value",
+      "SqlType": "float",
+      "MaxLength": 8,
+      "Precision": 53,
+      "Scale": 0,
+      "IsNullable": true,
+      "IsIdentity": false,
+      "TypeDisplay": "float(53)"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 11,
+      "ColumnName": "IsValid",
+      "SqlType": "bit",
+      "MaxLength": 1,
+      "Precision": 1,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "bit"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 12,
+      "ColumnName": "SourceId",
+      "SqlType": "bigint",
+      "MaxLength": 8,
+      "Precision": 19,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "bigint"
+    },
+    {
+      "SchemaName": "dbo",
+      "TableName": "FactAirQuality",
+      "Ordinal": 13,
+      "ColumnName": "BatchId",
+      "SqlType": "uniqueidentifier",
+      "MaxLength": 16,
+      "Precision": 0,
+      "Scale": 0,
+      "IsNullable": false,
+      "IsIdentity": false,
+      "TypeDisplay": "uniqueidentifier"
+    }
+  ],
+  "foreign_keys": [
+    {
+      "Name": "FK_FactAirQuality_Batch",
+      "ChildSchema": "dbo",
+      "ChildTable": "FactAirQuality",
+      "ChildColumn": "BatchId",
+      "ParentSchema": "etl",
+      "ParentTable": "BatchLog",
+      "ParentColumn": "BatchId",
+      "IsDisabled": false,
+      "IsNotTrusted": false
+    },
+    {
+      "Name": "FK_FactAirQuality_Date",
+      "ChildSchema": "dbo",
+      "ChildTable": "FactAirQuality",
+      "ChildColumn": "DateKey",
+      "ParentSchema": "dbo",
+      "ParentTable": "DimDate",
+      "ParentColumn": "DateKey",
+      "IsDisabled": false,
+      "IsNotTrusted": false
+    },
+    {
+      "Name": "FK_FactAirQuality_Pollutant",
+      "ChildSchema": "dbo",
+      "ChildTable": "FactAirQuality",
+      "ChildColumn": "PollutantKey",
+      "ParentSchema": "dbo",
+      "ParentTable": "DimPollutant",
+      "ParentColumn": "PollutantKey",
+      "IsDisabled": false,
+      "IsNotTrusted": false
+    },
+    {
+      "Name": "FK_FactAirQuality_Sensor",
+      "ChildSchema": "dbo",
+      "ChildTable": "FactAirQuality",
+      "ChildColumn": "SensorKey",
+      "ParentSchema": "dbo",
+      "ParentTable": "DimSensor",
+      "ParentColumn": "SensorKey",
+      "IsDisabled": false,
+      "IsNotTrusted": false
+    },
+    {
+      "Name": "FK_FactAirQuality_Station",
+      "ChildSchema": "dbo",
+      "ChildTable": "FactAirQuality",
+      "ChildColumn": "StationKey",
+      "ParentSchema": "dbo",
+      "ParentTable": "DimStation",
+      "ParentColumn": "StationKey",
+      "IsDisabled": false,
+      "IsNotTrusted": false
+    },
+    {
+      "Name": "FK_FactAirQuality_Time",
+      "ChildSchema": "dbo",
+      "ChildTable": "FactAirQuality",
+      "ChildColumn": "TimeKey",
+      "ParentSchema": "dbo",
+      "ParentTable": "DimTime",
+      "ParentColumn": "TimeKey",
+      "IsDisabled": false,
+      "IsNotTrusted": false
+    },
+    {
+      "Name": "FK_RejectRow_Batch",
+      "ChildSchema": "etl",
+      "ChildTable": "RejectRow",
+      "ChildColumn": "BatchId",
+      "ParentSchema": "etl",
+      "ParentTable": "BatchLog",
+      "ParentColumn": "BatchId",
+      "IsDisabled": false,
+      "IsNotTrusted": false
+    },
+    {
+      "Name": "FK_StageAirQuality_Batch",
+      "ChildSchema": "stg",
+      "ChildTable": "AirQuality",
+      "ChildColumn": "BatchId",
+      "ParentSchema": "etl",
+      "ParentTable": "BatchLog",
+      "ParentColumn": "BatchId",
+      "IsDisabled": false,
+      "IsNotTrusted": false
+    }
+  ],
+  "behavioral_tests": [
+    {
+      "TestId": "datekey_from_UTC_instead_of_local",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "duplicate_changed_value",
+      "Result": "PASS",
+      "ExpectedError": "2627",
+      "ActualError": "2627"
+    },
+    {
+      "TestId": "duplicate_new_batch",
+      "Result": "PASS",
+      "ExpectedError": "2627",
+      "ActualError": "2627"
+    },
+    {
+      "TestId": "duplicate_pollutant_natural_key",
+      "Result": "PASS",
+      "ExpectedError": "2627",
+      "ActualError": "2627"
+    },
+    {
+      "TestId": "duplicate_same_payload",
+      "Result": "PASS",
+      "ExpectedError": "2627",
+      "ActualError": "2627"
+    },
+    {
+      "TestId": "duplicate_sensor_natural_key",
+      "Result": "PASS",
+      "ExpectedError": "2627",
+      "ActualError": "2627"
+    },
+    {
+      "TestId": "duplicate_station_natural_key",
+      "Result": "PASS",
+      "ExpectedError": "2627",
+      "ActualError": "2627"
+    },
+    {
+      "TestId": "high_positive_not_automatically_rejected",
+      "Result": "PASS",
+      "ExpectedError": "NULL",
+      "ActualError": "NULL"
+    },
+    {
+      "TestId": "local_midnight_source_offset_preserved",
+      "Result": "PASS",
+      "ExpectedError": "NULL",
+      "ActualError": "NULL"
+    },
+    {
+      "TestId": "local_offset_not_07",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "minute_requires_design_extension",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "negative_marked_valid",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "null_marked_valid",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "null_negative_preserved_with_IsValid_0",
+      "Result": "PASS",
+      "ExpectedError": "NULL",
+      "ActualError": "NULL"
+    },
+    {
+      "TestId": "null_sensor_key",
+      "Result": "PASS",
+      "ExpectedError": "515",
+      "ActualError": "515"
+    },
+    {
+      "TestId": "orphan_batch",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "orphan_date",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "orphan_pollutant",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "orphan_sensor",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "orphan_station",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "orphan_time",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "reject_orphan_batch",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "rollback_all_test_data_calendar_unchanged",
+      "Result": "PASS",
+      "ExpectedError": "NULL",
+      "ActualError": "NULL"
+    },
+    {
+      "TestId": "same_hour_different_sensor_allowed",
+      "Result": "PASS",
+      "ExpectedError": "NULL",
+      "ActualError": "NULL"
+    },
+    {
+      "TestId": "stage_orphan_batch",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "staging_retains_duplicates_errors_fractional_seconds",
+      "Result": "PASS",
+      "ExpectedError": "NULL",
+      "ActualError": "NULL"
+    },
+    {
+      "TestId": "success_batch_unbalanced",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "utc_different_instant",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "wrong_day_of_week",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    },
+    {
+      "TestId": "wrong_unit",
+      "Result": "PASS",
+      "ExpectedError": "547",
+      "ActualError": "547"
+    }
+  ],
+  "measurement_etl_implemented": false
+}

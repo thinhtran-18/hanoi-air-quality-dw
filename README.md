@@ -8,6 +8,10 @@ Công nghệ dự kiến: SQL Server, Visual Studio/SSIS và Power BI.
 
 ## Trạng thái
 
+Bước 7 đã triển khai chuẩn hóa staging và chạy thử batch nguồn: 11.500 dòng
+đủ điều kiện kỹ thuật, chưa nạp fact. Xem [báo cáo bước 7](report/cac_phan/04_chuan_hoa_staging.md)
+để biết quy tắc, kiểm thử và các giới hạn cần xử lý ở bước nạp.
+
 Đã hoàn thành bước 1–4: chốt phạm vi, kiểm tra môi trường, đối soát nguồn,
 nạp bảng SQL nguồn và khảo sát chất lượng. Đã hoàn thành **bước 5: thiết kế
 Star Schema**, gồm sơ đồ chỉnh sửa được, PNG, từ điển 6 bảng / 40 cột và
@@ -26,10 +30,16 @@ Theo yêu cầu giảng viên, đã vẽ đủ **hình sao, bông tuyết và d�
 thiết kế để so sánh, có từ điển riêng. Galaxy minh họa thêm fact độ phủ ngày,
 đã tính thử và đối chiếu kết quả với khảo sát bước 4.
 
+Đã thực thi **bước 6: tạo cấu trúc kho Star** trong SSMS: database
+`hanoi_air_dw`, 6 bảng Star đúng 40 cột, staging/log/reject và các ràng buộc.
+Lịch đã nạp đủ 366 ngày / 24 giờ; kiểm tra metadata khớp từ điển và 30 ca
+thử ràng buộc đạt. Xem [DDL và cách chạy](sql/schema/README.md),
+[báo cáo bước 6](report/cac_phan/03_trien_khai_cau_truc_kho.md).
+
 Bộ nguồn có 23.036 phép đo; phạm vi kho PM2.5/PM10 có 11.500 phép đo.
 Đây là dữ liệu lịch sử không liên tục, chỉ phủ khoảng 28–37% giờ năm 2024
-theo từng trạm/chất; giờ thiếu không phải 0. Chưa triển khai bảng kho, ETL,
-OLAP hoặc dashboard. SSIS chưa xác nhận cài thành công; xử lý khi đến bước
+theo từng trạm/chất; giờ thiếu không phải 0. Fact và ba dimension mô tả
+chưa nạp; chưa triển khai ETL nạp fact, OLAP hoặc dashboard. SSIS chưa xác nhận cài thành công; xử lý khi đến bước
 cần dùng. Repo chưa có quy trình chạy đồ án hoàn chỉnh.
 
 ## Cấu trúc

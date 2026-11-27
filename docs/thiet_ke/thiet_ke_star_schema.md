@@ -1,6 +1,6 @@
 # Bước 5 — Thiết kế Star Schema
 
-Ngày hoàn thành thiết kế: 27/11/2026. Đầu vào: phạm vi và khảo sát bước 1–4 tại commit `6a71786`; yêu cầu bước 5 trong kế hoạch và ảnh người dùng cung cấp. Tài liệu này chốt thiết kế để bước 6 tạo bảng kho và bước 7 triển khai ETL. Chưa tạo database kho, chưa nạp fact, chưa dựng mô hình Power BI.
+Ngày hoàn thành thiết kế: 27/11/2026. Đầu vào: phạm vi và khảo sát bước 1–4 tại commit `6a71786`; yêu cầu bước 5 trong kế hoạch và ảnh người dùng cung cấp. Tài liệu này chốt thiết kế cho DDL và ETL. Cập nhật bước 6: đã tạo database kho, staging/log/reject, dimension/fact và lịch; chưa nạp fact, chưa dựng Power BI. Xem [báo cáo triển khai](../../report/cac_phan/03_trien_khai_cau_truc_kho.md).
 
 Bổ sung theo yêu cầu giảng viên: đã vẽ cả Snowflake và Galaxy, xem [so sánh ba lược đồ](so_sanh_ba_luoc_do.md). **Star trong tài liệu này vẫn là mô hình triển khai chính**; từ điển và DDL bước sau không cần đưa thêm bảng của hai phương án vào kho chính.
 
