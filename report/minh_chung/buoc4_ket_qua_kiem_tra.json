@@ -1,0 +1,125 @@
+{
+  "input_commit": "36514e16abea774bf8cb9a170422af8184f55b74",
+  "source_csv_sha256": "ba914a66bea882b5593948b5ef96b774fa5e96e55370874dd9d89dcf203d73c8",
+  "sql_rows": 23036,
+  "csv_rows": 23036,
+  "rows_full_comparison": 23036,
+  "max_float_absolute_difference": 0,
+  "empty_by_field": {
+    "location_id": 0,
+    "sensors_id": 0,
+    "location": 0,
+    "datetime": 0,
+    "lat": 0,
+    "lon": 0,
+    "parameter": 0,
+    "units": 0,
+    "value": 0
+  },
+  "negative_values": 0,
+  "offsets": {
+    "+07:00": 23036
+  },
+  "units": {
+    "pm25/µg/m³": 5749,
+    "pm10/µg/m³": 5751,
+    "co/µg/m³": 5780,
+    "no2/µg/m³": 5756
+  },
+  "annual_pm_coverage": [
+    {
+      "location_id": "2161299",
+      "parameter": "pm25",
+      "expected": 8784,
+      "observed": 3251,
+      "missing": 5533,
+      "coverage_pct": 37.01
+    },
+    {
+      "location_id": "2161299",
+      "parameter": "pm10",
+      "expected": 8784,
+      "observed": 3253,
+      "missing": 5531,
+      "coverage_pct": 37.03
+    },
+    {
+      "location_id": "2161301",
+      "parameter": "pm25",
+      "expected": 8784,
+      "observed": 2498,
+      "missing": 6286,
+      "coverage_pct": 28.44
+    },
+    {
+      "location_id": "2161301",
+      "parameter": "pm10",
+      "expected": 8784,
+      "observed": 2498,
+      "missing": 6286,
+      "coverage_pct": 28.44
+    }
+  ],
+  "paired_hours": {
+    "pm25": 2098,
+    "pm10": 2098
+  },
+  "largest_missing_spans": [
+    {
+      "location_id": "2161301",
+      "parameter": "pm25",
+      "start": "2024-04-05T01:00:00+07:00",
+      "end": "2024-09-26T21:00:00+07:00",
+      "hours": 4197
+    },
+    {
+      "location_id": "2161301",
+      "parameter": "pm10",
+      "start": "2024-04-05T01:00:00+07:00",
+      "end": "2024-09-26T21:00:00+07:00",
+      "hours": 4197
+    },
+    {
+      "location_id": "2161299",
+      "parameter": "pm25",
+      "start": "2024-07-01T12:00:00+07:00",
+      "end": "2024-09-28T09:00:00+07:00",
+      "hours": 2134
+    },
+    {
+      "location_id": "2161299",
+      "parameter": "pm10",
+      "start": "2024-07-01T12:00:00+07:00",
+      "end": "2024-09-28T09:00:00+07:00",
+      "hours": 2134
+    },
+    {
+      "location_id": "2161299",
+      "parameter": "pm25",
+      "start": "2024-11-27T01:00:00+07:00",
+      "end": "2024-12-31T23:00:00+07:00",
+      "hours": 839
+    },
+    {
+      "location_id": "2161299",
+      "parameter": "pm10",
+      "start": "2024-11-27T01:00:00+07:00",
+      "end": "2024-12-31T23:00:00+07:00",
+      "hours": 839
+    },
+    {
+      "location_id": "2161299",
+      "parameter": "pm25",
+      "start": "2024-01-01T00:00:00+07:00",
+      "end": "2024-01-29T13:00:00+07:00",
+      "hours": 686
+    },
+    {
+      "location_id": "2161299",
+      "parameter": "pm10",
+      "start": "2024-01-01T00:00:00+07:00",
+      "end": "2024-01-29T13:00:00+07:00",
+      "hours": 686
+    }
+  ]
+}
