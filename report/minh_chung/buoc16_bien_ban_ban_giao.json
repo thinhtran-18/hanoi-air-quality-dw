@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-28",
+  "baselineCommit": "6e0f74f5ff5c83e10fad745c3737777e8ee2d0f4",
+  "newCommitCreated": false,
+  "pushed": false,
+  "artifacts": [
+    {
+      "path": "report/san_pham/Huong_dan_hoc_hieu_do_an_khong_khi_Ha_Noi.docx",
+      "bytes": 702763,
+      "sha256": "4fca8df6a147e2d7ebb2f1ab80c132a7c350bc6456ccf478526e7421fd124501"
+    },
+    {
+      "path": "report/san_pham/Quy_trinh_do_an_khong_khi_Ha_Noi.pptx",
+      "bytes": 59874,
+      "sha256": "750a53de5ab1cc7471c66a90086c96bf88a6e30aa60e817ac0f2348486a85906"
+    }
+  ],
+  "verification": {
+    "wordPages": 29,
+    "wordTables": 6,
+    "oralQuestions": 42,
+    "editableSlides": 9,
+    "speakerNotes": 9,
+    "nativeCharts": 1,
+    "wordAccessibilityFindings": 0,
+    "wordAllPagesVisuallyInspected": true,
+    "powerpointAllSlidesVisuallyInspected": true,
+    "wordRenderer": "Microsoft Word native export after bundled renderer diagnosed missing LibreOffice",
+    "qaRendersDelivered": false
+  },
+  "localPrivacy": {
+    "localFilesKeptOnDisk": true,
+    "untrackedFromGit": [
+      "AGENTS.md",
+      "dashboard/HanoiAirOLAP.Report/.pbi/localSettings.json",
+      "dashboard/HanoiAirOLAP.SemanticModel/.pbi/cache.abf",
+      "dashboard/HanoiAirOLAP.SemanticModel/.pbi/editorSettings.json",
+      "dashboard/HanoiAirOLAP.SemanticModel/.pbi/localSettings.json"
+    ]
+  },
+  "publicationPreparation": {
+    "date": "2026-11-28",
+    "authorizedByUser": true,
+    "branch": "main",
+    "note": "Commit/push state above records the original handover. Git history records subsequent publication. Artifact hashes refreshed from files prepared for publication."
+  }
+}

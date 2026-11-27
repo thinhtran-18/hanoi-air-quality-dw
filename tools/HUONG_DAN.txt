@@ -1,82 +1,53 @@
-﻿THƯ MỤC .work — CÔNG CỤ HỖ TRỢ ĐỀ TÀI KHÔNG KHÍ HÀ NỘI
+CÔNG CỤ NGUỒN VÀ KIỂM TRA ĐỒ ÁN KHÔNG KHÍ HÀ NỘI
+Cập nhật 28/11/2026. Chạy từ gốc repository, không dùng đường dẫn .work cũ.
+Hướng dẫn toàn tuyến: docs/huong_dan_chay.md.
 
-Các file để nộp và import nằm ở thư mục cha. .work giữ mã nguồn và dữ liệu
-quan trắc gốc để kiểm chứng, tái tạo dữ liệu và tài liệu; không phải kho dữ liệu
-Star Schema hoàn chỉnh. Không nên xóa cả .work.
+1. ĐỐI SOÁT NGUỒN HIỆN CÓ
+python tools/doi_soat_nguon.py
+Đọc 325 file data/raw/*.csv.gz và CSV chốt; kỳ vọng 23.036 dòng, 0 khác biệt,
+issues rỗng. Không thêm --write khi chỉ kiểm tra vì tùy chọn này ghi lại hồ sơ.
 
-FILE CẦN GIỮ
-csv_goc/              325 file CSV nén .gz từ OpenAQ; giữ nguyên tên gốc để khớp manifest.
-tai_nguon_va_sql.py   Tải dữ liệu hai trạm năm 2024, tạo T-SQL và manifest.
-tao_sql_server.py    Tạo lại SQL Server từ CSV hiện tại, không tải mạng.
-kiem_tra_csv.py       Thống kê dữ liệu gốc, kiểm tra NULL/giá trị âm, ghép CSV.
-tao_tai_lieu.py       Tạo hai Word đề xuất đề tài và phân công 5 người.
-dinh_dang_word.py     Hàm dùng chung: font, đoạn văn, bảng, khổ giấy cho Word.
-chuan_hoa_word.py     Thay các cụm từ cũ trong hai Word bằng nội dung nguồn OpenAQ.
-xuat_pdf_word.ps1     Xuất Word sang PDF và văn bản từng trang để kiểm tra trình bày.
+2. TẢI LẠI TỪ MANIFEST KHI CẦN THỰC HÀNH
+python tools/tai_nguon_va_sql.py --out-dir .local/thuc_hanh/raw
+Tên script giữ từ trước nhưng hiện chỉ tải .csv.gz, không sinh SQL.
+Manifest mặc định: data/source/hanoi_air_quality_vn_source_manifest.txt.
+URL = https://openaq-data-archive.s3.amazonaws.com/ + mỗi dòng manifest.
+Tệp đích đã có được giữ nguyên. Tải mạng cần kiểm tra riêng sau khi hoàn tất.
 
-MỐI LIÊN HỆ
-OpenAQ -> tai_nguon_va_sql.py -> csv_goc/ + SQL + manifest tại thư mục cha.
-csv_goc/ -> kiem_tra_csv.py -> CSV ghép tại thư mục cha.
-Manifest ghi đường dẫn tải của 325 file gốc; tên file gốc được giữ nguyên.
-CSV và SQL chứa cùng bộ phép đo nhưng thứ tự dòng có thể khác nhau.
-tao_tai_lieu.py dùng dinh_dang_word.py để tạo Word; chuan_hoa_word.py chuẩn hóa
-nội dung, xuat_pdf_word.ps1 tạo bản kiểm tra trong pdf_kiem_tra/ (có thể xóa).
+3. GHÉP CSV
+python tools/kiem_tra_csv.py --output .local/thuc_hanh/ghep.csv
+Mặc định đọc data/raw; muốn đọc nguồn vừa tải:
+python tools/kiem_tra_csv.py --raw-dir .local/thuc_hanh/raw --output .local/thuc_hanh/ghep_tai_lai.csv
+Đọc bằng gzip + csv, ghi tiêu đề một lần, UTF-8 BOM; từ chối ghi đè tệp đích.
+Không dùng copy/b hay nối văn bản vì có thể lặp tiêu đề và sai dấu nháy.
 
-BỘ FILE HIỆN TẠI Ở THƯ MỤC CHA
-hanoi_air_quality_vn_monitoring_real.sql       SQL nguồn OpenAQ để import SQL Server.
-hanoi_air_quality_vn_monitoring_source.csv     23.036 phép đo ghép từ dữ liệu gốc.
-hanoi_air_quality_vn_source_manifest.txt       325 đường dẫn tệp nguồn.
-De_xuat_de_tai_Kho_du_lieu_khong_khi_Ha_Noi.docx
-Phan_cong_nhom_5_nguoi_de_tai_khong_khi_Ha_Noi.docx
+4. SINH SCRIPT SQL TỪ CSV
+python tools/tao_sql_server.py --csv .local/thuc_hanh/ghep.csv --output .local/thuc_hanh/nguon_moi.sql
+Lệnh chỉ sinh tệp SQL, chưa kết nối SQL Server. Script sinh mới dùng database
+hanoi_air_vn cố định và từ chối chạy nếu bảng nguồn đã tồn tại. Script nguồn
+đã chốt trong sql/source hỗ trợ nạp lại khóa còn thiếu; hai bản khác mục đích.
+Muốn thử trên database khác, rà và chỉnh USE/CREATE DATABASE trên bản sao trước
+khi Execute. sqlcmd -d không ghi đè USE bên trong file.
+CSV ghép mới có thể khác thứ tự dòng nên IDENTITY sinh lại có thể khác SourceId
+đã dùng trong kho. Không thay bảng nguồn dưới kho đang tồn tại bằng bản thực hành.
+Thực hành sinh nguồn mới cần cô lập cả nguồn lẫn kho; dự án dùng SQL chốt để giữ lineage.
 
-CÁCH CHẠY TỪ THƯ MỤC DỰ ÁN
-python .work/kiem_tra_csv.py
-python .work/tao_sql_server.py
-python .work/tai_nguon_va_sql.py
-python .work/tao_tai_lieu.py
-python .work/chuan_hoa_word.py
-powershell -File .work/xuat_pdf_word.ps1
+5. NẠP BẢN NGUỒN ĐÃ CHỐT
+SSMS / File / Open / File / sql/source/hanoi_air_quality_vn_monitoring_real.sql
+Kiểm tra đúng server và database trong mã / Execute / xem 23.036 dòng nguồn.
+Không import thêm CSV nếu đã chạy SQL chứa dữ liệu. Kho PM lấy 11.500 dòng.
+Ánh xạ CSV: location_id -> location_id; sensors_id -> sensor_id;
+location -> location_name; datetime -> observed_at DATETIMEOFFSET giữ offset;
+lat/lon -> latitude/longitude DECIMAL(10,6); parameter -> parameter;
+units -> unit; value -> value FLOAT(53). id là IDENTITY SQL, không có trong CSV.
+Không dùng số thứ tự CSV làm SourceId.
 
-Chỉ chạy bước cần dùng. Python tạo/sửa Word cần gói python-docx;
-xuất PDF cần Microsoft Word trên Windows. Tạo lại sẽ ghi đè file đầu ra;
-không chạy tạo Word nếu đã chỉnh tay tài liệu mà chưa lưu bản sao.
-SQL tạo hanoi_air_vn nếu chưa có; không DROP DATABASE. Chạy lại không thêm
-trùng khóa; báo lỗi nếu bản ghi đã có khác nguồn. Bộ công cụ này chuẩn bị
-nguồn, chưa triển khai ETL kho.
-
-ĐÃ DỌN
-Đưa vào Thùng rác: mã tạo tài liệu nhân sự/bóng chày, mã COVID/Weatherbit,
-các bản dữ liệu tải trùng, 3 file thăm dò .gz, 2 script vá mã dùng một lần,
-cache Python và research_render/ chứa PDF/ảnh/văn bản kiểm tra cũ.
-Đã tách các hàm định dạng cần thiết khỏi mã bóng chày thành dinh_dang_word.py.
-
-SQL SERVER VÀ VISUAL STUDIO
-1. Dùng SQL Server Database Engine (đã thử trên SQL Server 2025 cục bộ).
-2. Mở hanoi_air_quality_vn_monitoring_real.sql trong SSMS hoặc SQL editor của
-   Visual Studio có kết nối SQL Server, rồi Execute toàn bộ script.
-   Tài khoản cần quyền tạo database nếu hanoi_air_vn chưa tồn tại.
-   Không dùng script nạp dữ liệu này làm file Build của SQL Database Project;
-   nếu dùng SSDT, chạy riêng hoặc tổ chức lại thành post-deployment script.
-3. Kết quả mới: database hanoi_air_vn, bảng dbo.air_quality_hourly, 23.036 dòng.
-   Trạm 2161299: 13.015 dòng; trạm 2161301: 10.021 dòng.
-4. SQL chứa GO để chia batch. Khi gọi từ mã C#/ADO.NET, không gửi nguyên file
-   có GO vào một SqlCommand; dùng công cụ thực thi script hoặc tách batch.
-5. CSV là UTF-8 có BOM, dấu phẩy, có tiêu đề; không cần sửa dữ liệu.
-   Với SSIS Flat File Connection Manager: chọn code page 65001, dấu phẩy,
-   text qualifier dấu ngoặc kép, header ở dòng đầu; nên đọc cột thành text
-   Unicode ở staging rồi chuyển kiểu khi nạp.
-6. Ánh xạ CSV -> SQL:
-   location_id -> location_id (INT)
-   sensors_id -> sensor_id (INT)
-   location -> location_name (NVARCHAR(160))
-   datetime -> observed_at (DATETIMEOFFSET(0), giữ +07:00)
-   lat -> latitude (DECIMAL(10,6)); lon -> longitude (DECIMAL(10,6))
-   parameter -> parameter (NVARCHAR(20)); units -> unit (NVARCHAR(40))
-   value -> value (FLOAT(53)); id là IDENTITY, không có cột tương ứng trong CSV.
-   Một dòng là một phép đo theo trạm/cảm biến/thời điểm/chất ô nhiễm.
-7. Manifest là đường dẫn tương đối trong kho OpenAQ, không phải lệnh SQL.
-   Ghép tiền tố https://openaq-data-archive.s3.amazonaws.com/ để có URL tải.
-8. Tạo lại T-SQL từ CSV hiện tại: python .work/tao_sql_server.py
-   SQL đã chứa dữ liệu, do đó không cần import thêm CSV nếu đã chạy SQL.
-   Công cụ tạo Word có thể ghi đè chỉnh sửa thủ công: không cần chạy lại
-   vì hai Word hiện tại đã được nhóm cập nhật sang SQL Server.
+6. CÔNG CỤ KHÁC
+kiem_tra_buoc6.py: đối chiếu metadata; ca ràng buộc chỉ chạy trên kho trống.
+tao_thiet_ke_buoc5.py: sinh lại sơ đồ/từ điển Star.
+tao_luoc_do_bo_sung.py: sinh lại Snowflake/Galaxy và dữ liệu thử độ phủ.
+tao_script_buoc6_ssms.py: sinh script tổng hợp bước 6.
+Công cụ sinh lại có thể ghi đè sản phẩm tự sinh; đọc mã, lưu bản sao nếu đã chỉnh tay.
+Chỉ Star triển khai; hai sơ đồ còn lại dùng học cách vẽ và so sánh.
+Các script tạo Word cũ trong .work không thuộc bộ công cụ hiện tại.
+Tài liệu Word và PowerPoint học tập nằm trong report/san_pham/.

@@ -24,6 +24,10 @@ venv/
 *.local.json
 .local/
 
+# Personal agent instructions and Power BI local cache/settings
+AGENTS.md
+**/.pbi/
+
 # Temporary and generated files
 ~$*
 *.tmp

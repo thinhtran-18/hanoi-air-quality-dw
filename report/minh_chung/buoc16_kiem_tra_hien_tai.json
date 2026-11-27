@@ -1,0 +1,154 @@
+{
+  "date": "2026-11-28",
+  "method": "Read-only SQL via sqlcmd; Power BI semantic model via Microsoft local MCP; file hash via PowerShell. GUI shown separately.",
+  "hash": {
+    "total": 327,
+    "mismatch": 0
+  },
+  "source": {
+    "rawFiles": 325,
+    "rows": 23036,
+    "rawCsvDifferences": 0,
+    "issues": []
+  },
+  "sql": {
+    "sourceRows": 23036,
+    "factRows": 11500,
+    "validRows": 11500,
+    "orphanRows": 0,
+    "duplicateGrains": 0,
+    "dateRows": 366,
+    "timeRows": 24,
+    "starColumns": 40,
+    "batches": {
+      "Success": 7,
+      "Failed": 6,
+      "Running": 2
+    }
+  },
+  "model": {
+    "tables": 7,
+    "relationships": 8,
+    "businessMeasures": 19,
+    "emptyPlaceholderMeasures": 1
+  },
+  "mcp": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"message\":\"Found 7 tables\",\"operation\":\"List\",\"data\":[{\"columnCount\":8,\"partitionCount\":1,\"storageMode\":\"Import\",\"name\":\"DimDate\"},{\"columnCount\":4,\"partitionCount\":1,\"storageMode\":\"Import\",\"name\":\"DimPollutant\"},{\"columnCount\":3,\"partitionCount\":1,\"storageMode\":\"Import\",\"name\":\"DimSensor\"},{\"columnCount\":7,\"partitionCount\":1,\"storageMode\":\"Import\",\"name\":\"DimStation\"},{\"columnCount\":5,\"partitionCount\":1,\"storageMode\":\"Import\",\"name\":\"DimTime\"},{\"columnCount\":13,\"measureCount\":15,\"partitionCount\":1,\"storageMode\":\"Import\",\"name\":\"FactAirQuality\"},{\"columnCount\":7,\"measureCount\":5,\"partitionCount\":1,\"storageMode\":\"Import\",\"name\":\"StationPairHourly\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"message\":\"Found 8 relationships\",\"operation\":\"LIST\",\"data\":[{\"fromTable\":\"FactAirQuality\",\"fromColumn\":\"DateKey\",\"toTable\":\"DimDate\",\"toColumn\":\"DateKey\",\"isActive\":true,\"crossFilteringBehavior\":\"OneDirection\",\"fromCardinality\":\"Many\",\"toCardinality\":\"One\",\"name\":\"AutoDetected_105931b9-c436-4e3c-b2c6-cca8db8ce593\"},{\"fromTable\":\"FactAirQuality\",\"fromColumn\":\"PollutantKey\",\"toTable\":\"DimPollutant\",\"toColumn\":\"PollutantKey\",\"isActive\":true,\"crossFilteringBehavior\":\"OneDirection\",\"fromCardinality\":\"Many\",\"toCardinality\":\"One\",\"name\":\"AutoDetected_a47d53a7-adc3-440d-9c04-6f2f335ffe97\"},{\"fromTable\":\"FactAirQuality\",\"fromColumn\":\"SensorKey\",\"toTable\":\"DimSensor\",\"toColumn\":\"SensorKey\",\"isActive\":true,\"crossFilteringBehavior\":\"OneDirection\",\"fromCardinality\":\"Many\",\"toCardinality\":\"One\",\"name\":\"AutoDetected_70228694-5abd-473f-ae79-a3096ea1e2c4\"},{\"fromTable\":\"FactAirQuality\",\"fromColumn\":\"StationKey\",\"toTable\":\"DimStation\",\"toColumn\":\"StationKey\",\"isActive\":true,\"crossFilteringBehavior\":\"OneDirection\",\"fromCardinality\":\"Many\",\"toCardinality\":\"One\",\"name\":\"AutoDetected_134a92f8-ad0d-4b98-835f-1d0e5bf31cd6\"},{\"fromTable\":\"FactAirQuality\",\"fromColumn\":\"TimeKey\",\"toTable\":\"DimTime\",\"toColumn\":\"TimeKey\",\"isActive\":true,\"crossFilteringBehavior\":\"OneDirection\",\"fromCardinality\":\"Many\",\"toCardinality\":\"One\",\"name\":\"AutoDetected_5c52d233-a3e7-4519-8d0e-dbc59ea71700\"},{\"fromTable\":\"StationPairHourly\",\"fromColumn\":\"DateKey\",\"toTable\":\"DimDate\",\"toColumn\":\"DateKey\",\"isActive\":true,\"crossFilteringBehavior\":\"OneDirection\",\"fromCardinality\":\"Many\",\"toCardinality\":\"One\",\"name\":\"PairHourly_DateKey\"},{\"fromTable\":\"StationPairHourly\",\"fromColumn\":\"PollutantKey\",\"toTable\":\"DimPollutant\",\"toColumn\":\"PollutantKey\",\"isActive\":true,\"crossFilteringBehavior\":\"OneDirection\",\"fromCardinality\":\"Many\",\"toCardinality\":\"One\",\"name\":\"PairHourly_PollutantKey\"},{\"fromTable\":\"StationPairHourly\",\"fromColumn\":\"TimeKey\",\"toTable\":\"DimTime\",\"toColumn\":\"TimeKey\",\"isActive\":true,\"crossFilteringBehavior\":\"OneDirection\",\"fromCardinality\":\"Many\",\"toCardinality\":\"One\",\"name\":\"PairHourly_TimeKey\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"message\":\"Found 20 measures across 2 tables\",\"operation\":\"List\",\"data\":[{\"tableName\":\"FactAirQuality\",\"measures\":[{\"name\":\"\\u0110o l\\u01B0\\u01A1\\u0300ng\"},{\"formatString\":\"#,##0\",\"name\":\"S\\u1ED1 ph\\u00E9p \\u0111o h\\u1EE3p l\\u1EC7\",\"description\":\"S\\u1ED1 quan s\\u00E1t h\\u1EE3p l\\u1EC7 trong ng\\u1EEF c\\u1EA3nh l\\u1ECDc; kh\\u00F4ng m\\u1EB7c \\u0111\\u1ECBnh l\\u00E0 s\\u1ED1 gi\\u1EDD khi c\\u00F3 nhi\\u1EC1u tr\\u1EA1m/ch\\u1EA5t/c\\u1EA3m bi\\u1EBFn.\"},{\"formatString\":\"#,##0.00\",\"name\":\"N\\u1ED3ng \\u0111\\u1ED9 trung b\\u00ECnh\",\"description\":\"Trung b\\u00ECnh c\\u00E1c ph\\u00E9p \\u0111o h\\u1EE3p l\\u1EC7 c\\u1EE7a m\\u1ED9t ch\\u1EA5t; tr\\u1EA3 v\\u1EC1 BLANK() khi ch\\u01B0a ch\\u1ECDn \\u0111\\u00FAng m\\u1ED9t ch\\u1EA5t.\"},{\"formatString\":\"#,##0.00\",\"name\":\"PM2.5 trung b\\u00ECnh (\\u00B5g/m\\u00B3)\",\"description\":\"Trung b\\u00ECnh PM2.5 c\\u1EE7a c\\u00E1c ph\\u00E9p \\u0111o h\\u1EE3p l\\u1EC7 trong b\\u1ED9 l\\u1ECDc hi\\u1EC7n t\\u1EA1i; kh\\u00F4ng suy r\\u1ED9ng cho kho\\u1EA3ng thi\\u1EBFu.\"},{\"formatString\":\"#,##0.00\",\"name\":\"PM10 trung b\\u00ECnh (\\u00B5g/m\\u00B3)\",\"description\":\"Trung b\\u00ECnh PM10 c\\u1EE7a c\\u00E1c ph\\u00E9p \\u0111o h\\u1EE3p l\\u1EC7 trong b\\u1ED9 l\\u1ECDc hi\\u1EC7n t\\u1EA1i; kh\\u00F4ng suy r\\u1ED9ng cho kho\\u1EA3ng thi\\u1EBFu.\"},{\"formatString\":\"#,##0.00\",\"name\":\"C\\u1EF1c \\u0111\\u1EA1i (\\u00B5g/m\\u00B3)\",\"description\":\"Gi\\u00E1 tr\\u1ECB l\\u1EDBn nh\\u1EA5t c\\u1EE7a c\\u00E1c ph\\u00E9p \\u0111o h\\u1EE3p l\\u1EC7 trong ng\\u1EEF c\\u1EA3nh m\\u1ED9t ch\\u1EA5t; tr\\u1EA3 v\\u1EC1 BLANK() khi tr\\u1ED9n nhi\\u1EC1u ch\\u1EA5t.\"},{\"formatString\":\"#,##0.00\",\"name\":\"C\\u1EF1c ti\\u1EC3u (\\u00B5g/m\\u00B3)\",\"description\":\"Gi\\u00E1 tr\\u1ECB nh\\u1ECF nh\\u1EA5t c\\u1EE7a c\\u00E1c ph\\u00E9p \\u0111o h\\u1EE3p l\\u1EC7 trong ng\\u1EEF c\\u1EA3nh m\\u1ED9t ch\\u1EA5t; tr\\u1EA3 v\\u1EC1 BLANK() khi tr\\u1ED9n nhi\\u1EC1u ch\\u1EA5t.\"},{\"formatString\":\"#,##0.00\",\"name\":\"PM2.5 c\\u1EF1c \\u0111\\u1EA1i (\\u00B5g/m\\u00B3)\",\"description\":\"Gi\\u00E1 tr\\u1ECB PM2.5 l\\u1EDBn nh\\u1EA5t trong b\\u1ED9 l\\u1ECDc hi\\u1EC7n t\\u1EA1i.\"},{\"formatString\":\"#,##0.00\",\"name\":\"PM10 c\\u1EF1c \\u0111\\u1EA1i (\\u00B5g/m\\u00B3)\",\"description\":\"Gi\\u00E1 tr\\u1ECB PM10 l\\u1EDBn nh\\u1EA5t trong b\\u1ED9 l\\u1ECDc hi\\u1EC7n t\\u1EA1i.\"},{\"formatString\":\"#,##0\",\"name\":\"S\\u1ED1 ng\\u00E0y c\\u00F3 d\\u1EEF li\\u1EC7u\",\"description\":\"S\\u1ED1 ng\\u00E0y \\u0111\\u1ECBa ph\\u01B0\\u01A1ng ph\\u00E2n bi\\u1EC7t c\\u00F3 \\u00EDt nh\\u1EA5t m\\u1ED9t ph\\u00E9p \\u0111o h\\u1EE3p l\\u1EC7.\"},{\"formatString\":\"#,##0\",\"name\":\"S\\u1ED1 gi\\u1EDD quan s\\u00E1t\",\"description\":\"S\\u1ED1 m\\u1ED1c gi\\u1EDD \\u0111\\u1ECBa ph\\u01B0\\u01A1ng ph\\u00E2n bi\\u1EC7t c\\u00F3 \\u00EDt nh\\u1EA5t m\\u1ED9t ph\\u00E9p \\u0111o h\\u1EE3p l\\u1EC7 trong ng\\u1EEF c\\u1EA3nh l\\u1ECDc.\"},{\"formatString\":\"#,##0\",\"name\":\"S\\u1ED1 gi\\u1EDD tr\\u1EA1m-ch\\u1EA5t\",\"description\":\"S\\u1ED1 gi\\u1EDD ph\\u00E2n bi\\u1EC7t theo t\\u1EEBng c\\u1EB7p tr\\u1EA1m\\u2013ch\\u1EA5t c\\u00F3 ph\\u00E9p \\u0111o h\\u1EE3p l\\u1EC7 (d\\u00F9ng \\u0111\\u1EC3 \\u0111\\u1ED1i chi\\u1EBFu \\u0111\\u1ED9 ph\\u1EE7).\"},{\"formatString\":\"#,##0\",\"name\":\"S\\u1ED1 gi\\u1EDD k\\u1EF3 v\\u1ECDng\",\"description\":\"S\\u1ED1 gi\\u1EDD k\\u1EF3 v\\u1ECDng trong ng\\u1EEF c\\u1EA3nh ng\\u00E0y hi\\u1EC7n t\\u1EA1i (24 gi\\u1EDD/ng\\u00E0y; c\\u1EA3 n\\u0103m 2024 l\\u00E0 8.784 gi\\u1EDD).\"},{\"formatString\":\"#,##0\",\"name\":\"S\\u1ED1 gi\\u1EDD thi\\u1EBFu\",\"description\":\"S\\u1ED1 gi\\u1EDD thi\\u1EBFu trong ng\\u1EEF c\\u1EA3nh 1 tr\\u1EA1m v\\u00E0 1 ch\\u1EA5t c\\u00F3 ph\\u00E9p \\u0111o; tr\\u1EA3 v\\u1EC1 BLANK() khi kh\\u00F4ng c\\u00F3 d\\u1EEF li\\u1EC7u ho\\u1EB7c ch\\u01B0a t\\u00E1ch ri\\u00EAng tr\\u1EA1m\\u2013ch\\u1EA5t.\"},{\"formatString\":\"0.00%\",\"name\":\"\\u0110\\u1ED9 ph\\u1EE7 (%)\",\"description\":\"T\\u1EF7 l\\u1EC7 \\u0111\\u1ED9 ph\\u1EE7 gi\\u1EDD quan s\\u00E1t tr\\u00EAn t\\u1ED5ng s\\u1ED1 gi\\u1EDD k\\u1EF3 v\\u1ECDng cho 1 tr\\u1EA1m v\\u00E0 1 ch\\u1EA5t.\"}]},{\"tableName\":\"StationPairHourly\",\"measures\":[{\"formatString\":\"#,##0\",\"name\":\"S\\u1ED1 gi\\u1EDD gh\\u00E9p c\\u1EB7p\",\"description\":\"S\\u1ED1 gi\\u1EDD \\u0111\\u1ECBa ph\\u01B0\\u01A1ng \\u0111\\u1ED3ng th\\u1EDDi m\\u00E0 c\\u1EA3 hai tr\\u1EA1m c\\u00F9ng c\\u00F3 ph\\u00E9p \\u0111o h\\u1EE3p l\\u1EC7 cho c\\u00F9ng ch\\u1EA5t.\"},{\"formatString\":\"#,##0.00\",\"name\":\"TB H\\u00E0ng \\u0110\\u1EADu (gi\\u1EDD chung, \\u00B5g/m\\u00B3)\",\"description\":\"Trung b\\u00ECnh n\\u1ED3ng \\u0111\\u1ED9 t\\u1EA1i H\\u00E0ng \\u0110\\u1EADu t\\u00EDnh tr\\u00EAn t\\u1EADp gi\\u1EDD gh\\u00E9p c\\u1EB7p c\\u1EE7a m\\u1ED9t ch\\u1EA5t.\"},{\"formatString\":\"#,##0.00\",\"name\":\"TB Kh\\u01B0\\u01A1ng Trung (gi\\u1EDD chung, \\u00B5g/m\\u00B3)\",\"description\":\"Trung b\\u00ECnh n\\u1ED3ng \\u0111\\u1ED9 t\\u1EA1i Kh\\u01B0\\u01A1ng Trung t\\u00EDnh tr\\u00EAn t\\u1EADp gi\\u1EDD gh\\u00E9p c\\u1EB7p c\\u1EE7a m\\u1ED9t ch\\u1EA5t.\"},{\"formatString\":\"\\u002B#,##0.00;-#,##0.00;0.00\",\"name\":\"Ch\\u00EAnh l\\u1EC7ch TB (H\\u0110 - KT, \\u00B5g/m\\u00B3)\",\"description\":\"Ch\\u00EAnh l\\u1EC7ch trung b\\u00ECnh (H\\u00E0ng \\u0110\\u1EADu - Kh\\u01B0\\u01A1ng Trung) t\\u00EDnh b\\u1EB1ng \\u00B5g/m\\u00B3 tr\\u00EAn c\\u00F9ng t\\u1EADp gi\\u1EDD gh\\u00E9p c\\u1EB7p; kh\\u00F4ng ph\\u1EA3i ph\\u1EA7n tr\\u0103m.\"},{\"name\":\"Th\\u00F4ng b\\u00E1o gi\\u1EDD gh\\u00E9p c\\u1EB7p\",\"description\":\"Th\\u00F4ng b\\u00E1o tr\\u1EA1ng th\\u00E1i khi kh\\u00F4ng c\\u00F3 gi\\u1EDD chung ho\\u1EB7c \\u0111ang c\\u00F3 gi\\u1EDD gh\\u00E9p c\\u1EB7p.\"}]}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"message\":\"DAX query executed successfully, returned 1 rows in 39ms\",\"operation\":\"Execute\",\"data\":{\"rowCount\":1,\"isTruncated\":false,\"columns\":[{\"name\":\"[FactRows]\",\"dataType\":\"Int64\",\"isNullable\":true,\"ordinal\":0},{\"name\":\"[ValidRows]\",\"dataType\":\"Int64\",\"isNullable\":true,\"ordinal\":1},{\"name\":\"[PM25]\",\"dataType\":\"Double\",\"isNullable\":true,\"ordinal\":2},{\"name\":\"[PM10]\",\"dataType\":\"Double\",\"isNullable\":true,\"ordinal\":3},{\"name\":\"[PairedRows]\",\"dataType\":\"Int64\",\"isNullable\":true,\"ordinal\":4}],\"rows\":[{\"[FactRows]\":11500,\"[ValidRows]\":11500,\"[PM25]\":38.74945555748826,\"[PM10]\":63.82399582681273,\"[PairedRows]\":4196}],\"executionTimeMs\":39}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "dax": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "label": "paired",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"message\":\"DAX query executed successfully, returned 2 rows in 7ms\",\"operation\":\"Execute\",\"data\":{\"rowCount\":2,\"isTruncated\":false,\"columns\":[{\"name\":\"DimPollutant[PollutantCode]\",\"dataType\":\"String\",\"isNullable\":true,\"ordinal\":0},{\"name\":\"[Hours]\",\"dataType\":\"Int64\",\"isNullable\":true,\"ordinal\":1},{\"name\":\"[HD]\",\"dataType\":\"Double\",\"isNullable\":true,\"ordinal\":2},{\"name\":\"[KT]\",\"dataType\":\"Double\",\"isNullable\":true,\"ordinal\":3},{\"name\":\"[Diff]\",\"dataType\":\"Double\",\"isNullable\":true,\"ordinal\":4}],\"rows\":[{\"DimPollutant[PollutantCode]\":\"pm10\",\"[Hours]\":2098,\"[HD]\":74.39652049571019,\"[KT]\":43.664346997140136,\"[Diff]\":30.73217349857009},{\"DimPollutant[PollutantCode]\":\"pm25\",\"[Hours]\":2098,\"[HD]\":42.88384175405148,\"[KT]\":32.466072449952335,\"[Diff]\":10.417769304099128}],\"executionTimeMs\":7}}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "label": "sensor_combinations",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"message\":\"DAX query executed successfully, returned 4 rows in 16ms\",\"operation\":\"Execute\",\"data\":{\"rowCount\":4,\"isTruncated\":false,\"columns\":[{\"name\":\"DimStation[StationName]\",\"dataType\":\"String\",\"isNullable\":true,\"ordinal\":0},{\"name\":\"DimSensor[SensorId]\",\"dataType\":\"Int64\",\"isNullable\":true,\"ordinal\":1},{\"name\":\"DimPollutant[PollutantCode]\",\"dataType\":\"String\",\"isNullable\":true,\"ordinal\":2},{\"name\":\"[Hours]\",\"dataType\":\"Int64\",\"isNullable\":true,\"ordinal\":3},{\"name\":\"[Missing]\",\"dataType\":\"Int64\",\"isNullable\":true,\"ordinal\":4},{\"name\":\"[Coverage]\",\"dataType\":\"Double\",\"isNullable\":true,\"ordinal\":5}],\"rows\":[{\"DimStation[StationName]\":\"H\\u00E0ng \\u0110\\u1EADu-2131275\",\"DimSensor[SensorId]\":7772005,\"DimPollutant[PollutantCode]\":\"pm10\",\"[Hours]\":3253,\"[Missing]\":5531,\"[Coverage]\":0.37033242258652094},{\"DimStation[StationName]\":\"H\\u00E0ng \\u0110\\u1EADu-2131275\",\"DimSensor[SensorId]\":7771996,\"DimPollutant[PollutantCode]\":\"pm25\",\"[Hours]\":3251,\"[Missing]\":5533,\"[Coverage]\":0.3701047358834244},{\"DimStation[StationName]\":\"Kh\\u01B0\\u01A1ng Trung-2131277\",\"DimSensor[SensorId]\":7772039,\"DimPollutant[PollutantCode]\":\"pm10\",\"[Hours]\":2498,\"[Missing]\":6286,\"[Coverage]\":0.2843806921675774},{\"DimStation[StationName]\":\"Kh\\u01B0\\u01A1ng Trung-2131277\",\"DimSensor[SensorId]\":7772073,\"DimPollutant[PollutantCode]\":\"pm25\",\"[Hours]\":2498,\"[Missing]\":6286,\"[Coverage]\":0.2843806921675774}],\"executionTimeMs\":16}}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "label": "empty_and_mixed",
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"message\":\"DAX query executed successfully, returned 1 rows in 10ms\",\"operation\":\"Execute\",\"data\":{\"rowCount\":1,\"isTruncated\":false,\"columns\":[{\"name\":\"[MixedIsBlank]\",\"dataType\":\"Boolean\",\"isNullable\":true,\"ordinal\":0},{\"name\":\"[AugustIsBlank]\",\"dataType\":\"Boolean\",\"isNullable\":true,\"ordinal\":1},{\"name\":\"[AugustPairs]\",\"dataType\":\"Int64\",\"isNullable\":true,\"ordinal\":2},{\"name\":\"[AugustMessage]\",\"dataType\":\"String\",\"isNullable\":true,\"ordinal\":3}],\"rows\":[{\"[MixedIsBlank]\":true,\"[AugustIsBlank]\":true,\"[AugustPairs]\":null,\"[AugustMessage]\":\"Kh\\u00F4ng c\\u00F3 gi\\u1EDD chung gi\\u1EEFa hai tr\\u1EA1m trong b\\u1ED9 l\\u1ECDc hi\\u1EC7n t\\u1EA1i.\"}],\"executionTimeMs\":10}}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Clone/empty database T-SQL retest is historical evidence from step 15, not repeated in step 16.",
+    "SSIS Project.params not fully parameterized; separate empty database SSIS execution not verified.",
+    "Existing failed/running test batches retained; no log cleanup performed.",
+    "19 business measures plus an empty placeholder measure named Đo lường."
+  ],
+  "sourcePractice": {
+    "row_count": 23036,
+    "canonical_only": 0,
+    "practice_only": 0,
+    "sql_generated": true,
+    "generated_sql_executed": false
+  },
+  "gui": {
+    "PowerBIReportPagesViewed": 3,
+    "screenshots": [
+      "buoc16_01_tong_quan.png",
+      "buoc16_02_xu_huong.png",
+      "buoc16_03_so_sanh.png"
+    ],
+    "modelEditPerformed": false
+  }
+}
