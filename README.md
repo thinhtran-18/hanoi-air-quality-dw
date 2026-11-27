@@ -43,14 +43,15 @@ thành công hai lần; mỗi batch xử lý 11.500 dòng đã có, fact giữ 1
 Xem [báo cáo bước 9](report/cac_phan/06_ssis_buoc9.md) và
 [hướng dẫn thao tác](docs/huong_dan_buoc_9_ssis.md).
 
-Bước 10–13 đã kiểm thử ETL (`report/minh_chung/ket_qua_etl.csv`), chạy
+Bước 10–14 đã kiểm thử ETL (`report/minh_chung/ket_qua_etl.csv`), chạy
 8 truy vấn SQL OLAP (`sql/olap/`), dựng và deploy cube SSAS 5 chiều
 (`HanoiAirOLAP`, gồm `DimSensor`), chạy 3 truy vấn MDX khớp SQL, chuẩn hóa
-mô hình Power BI với 11 DAX measures (`dashboard/measures.dax`) và dựng
-báo cáo 3 trang (`dashboard/khong_khi_ha_noi.pbix`, mô tả tại
+mô hình Power BI với 19 DAX measures (`dashboard/measures.dax`), bổ sung
+views ghép cặp giờ đồng thời (`sql/schema/06_tao_views_buoc14.sql`) và
+hoàn thiện báo cáo 3 trang (`dashboard/khong_khi_ha_noi.pbix`, mô tả tại
 `dashboard/mo_ta_bao_cao_buoc13.md`). Xem [báo cáo bước 11](report/cac_phan/07_olap_buoc11.md).
-Các bước 14–16 (so sánh ghép cặp giờ đồng thời, nghiệm thu đối soát và
-hoàn thiện báo cáo/slide) đang tiếp tục triển khai.
+Các bước 15–16 (nghiệm thu đối soát toàn hệ thống và hoàn thiện báo cáo/slide)
+đang tiếp tục triển khai.
 
 ## Cấu trúc
 

@@ -28,6 +28,14 @@ Tài liệu mô tả cấu trúc mô hình phân tích Power BI lấy trực ti�
 | `Số ngày có dữ liệu` | `DISTINCTCOUNT(FactAirQuality[DateKey])` với `IsValid = TRUE()` | ngày | Số ngày địa phương phân biệt có ít nhất 1 phép đo hợp lệ. |
 | `Số giờ quan sát` | Đếm tổ hợp `(DateKey, TimeKey)` phân biệt với `IsValid = TRUE()` | giờ | Số mốc giờ địa phương phân biệt có ít nhất 1 phép đo hợp lệ. |
 | `Số giờ trạm-chất` | Đếm tổ hợp `(DateKey, TimeKey, StationKey, PollutantKey)` phân biệt | giờ·trạm·chất | Dùng để đánh giá độ phủ theo từng trạm và từng chất (khác với `Số phép đo hợp lệ` nếu sau này một trạm có nhiều cảm biến cùng đo một chất). |
+| `Số giờ kỳ vọng` | `COUNTROWS(DimDate) * 24` | giờ | Số giờ kỳ vọng theo lịch trong ngữ cảnh ngày hiện tại (cả năm nhuận 2024 là `8.784` giờ/trạm/chất). |
+| `Số giờ thiếu` | `[Số giờ kỳ vọng] - [Số giờ trạm-chất]` (khi chọn 1 trạm & 1 chất) | giờ | Trả về `BLANK()` khi chưa tách riêng trạm và chất để tránh cộng gộp sai. |
+| `Độ phủ (%)` | `DIVIDE([Số giờ trạm-chất], [Số giờ kỳ vọng])` (khi chọn 1 trạm & 1 chất) | % | Tỷ lệ giờ có phép đo hợp lệ trên số giờ kỳ vọng của từng trạm–chất. |
+| `Số giờ ghép cặp` | `COUNTROWS(StationPairHourly)` | giờ | Số giờ địa phương đồng thời cả hai trạm đều có phép đo hợp lệ cho cùng chất (`dbo.vw_StationPairHourly`). |
+| `TB Hàng Đậu (giờ chung, µg/m³)` | `AVERAGE(StationPairHourly[ValueHangDau])` khi `HASONEVALUE(PollutantCode)` | µg/m³ | Trung bình tại Hàng Đậu trên **đúng tập giờ ghép cặp** (khác với trung bình trên mọi giờ riêng của Hàng Đậu). |
+| `TB Khương Trung (giờ chung, µg/m³)` | `AVERAGE(StationPairHourly[ValueKhuongTrung])` khi `HASONEVALUE(PollutantCode)` | µg/m³ | Trung bình tại Khương Trung trên **đúng tập giờ ghép cặp**. |
+| `Chênh lệch TB (HĐ - KT, µg/m³)` | `AVERAGE(StationPairHourly[Difference])` khi `HASONEVALUE(PollutantCode)` | µg/m³ | Chênh lệch tuyệt đối theo `µg/m³` (không phải phần trăm) trên tập giờ chung; chưa chứng minh nguyên nhân. |
+| `Thông báo giờ ghép cặp` | Kiểm tra `COUNTROWS(StationPairHourly) = 0` | văn bản | Thông báo rõ trạng thái không có giờ chung thay vì hiển thị `0` gây nhầm lẫn. |
 
 ## 3. Lưu ý sử dụng trên báo cáo
 

@@ -9,7 +9,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["DimDate","DimPollutant","DimSensor","DimStation","DimTime","FactAirQuality"]
+annotation PBI_QueryOrder = ["DimDate","DimPollutant","DimSensor","DimStation","DimTime","FactAirQuality","StationPairHourly"]
 
 annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
 
@@ -19,6 +19,7 @@ ref table DimSensor
 ref table DimStation
 ref table DimTime
 ref table FactAirQuality
+ref table StationPairHourly
 
 ref cultureInfo vi-VN
 

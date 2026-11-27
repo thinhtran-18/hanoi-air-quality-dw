@@ -18,3 +18,15 @@ relationship AutoDetected_5c52d233-a3e7-4519-8d0e-dbc59ea71700
 	fromColumn: FactAirQuality.TimeKey
 	toColumn: DimTime.TimeKey
 
+relationship PairHourly_DateKey
+	fromColumn: StationPairHourly.DateKey
+	toColumn: DimDate.DateKey
+
+relationship PairHourly_PollutantKey
+	fromColumn: StationPairHourly.PollutantKey
+	toColumn: DimPollutant.PollutantKey
+
+relationship PairHourly_TimeKey
+	fromColumn: StationPairHourly.TimeKey
+	toColumn: DimTime.TimeKey
+

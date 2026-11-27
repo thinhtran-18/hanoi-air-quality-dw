@@ -21,14 +21,13 @@
                   {
                     "value": "QUY TẮC DIỄN GIẢI & ĐỘ PHỦ DỮ LIỆU",
                     "textStyle": {
+                      "fontWeight": "bold",
                       "fontFamily": "Segoe UI",
                       "fontSize": "15px",
-                      "fontWeight": "bold",
-                      "color": "#0F172A"
+                      "color": "#0f172a"
                     }
                   }
-                ],
-                "horizontalTextAlignment": "left"
+                ]
               },
               {
                 "textRuns": [
@@ -37,26 +36,22 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "13px",
-                      "fontWeight": "normal",
                       "color": "#334155"
                     }
                   }
-                ],
-                "horizontalTextAlignment": "left"
+                ]
               },
               {
                 "textRuns": [
                   {
-                    "value": "• Năm nhuận 2024 có 366 ngày (8.784 giờ/trạm/chất). Độ phủ hiện có khoảng 28–37% số giờ; tháng 8/2024 trống hoàn toàn.",
+                    "value": "• Năm nhuận 2024 có 366 ngày (8.784 giờ/trạm/chất). Độ phủ thực tế đạt 28,44%–37,03%; tháng 8/2024 trống hoàn toàn.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "13px",
-                      "fontWeight": "normal",
                       "color": "#334155"
                     }
                   }
-                ],
-                "horizontalTextAlignment": "left"
+                ]
               },
               {
                 "textRuns": [
@@ -65,26 +60,22 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "13px",
-                      "fontWeight": "normal",
                       "color": "#334155"
                     }
                   }
-                ],
-                "horizontalTextAlignment": "left"
+                ]
               },
               {
                 "textRuns": [
                   {
-                    "value": "• So sánh công bằng hai trạm cần thực hiện trên tập giờ ghép cặp ở trang 03 (Bước 14).",
+                    "value": "• So sánh công bằng hai trạm trên tập giờ ghép cặp thực hiện tại trang 03_So_sanh_tra_cuu.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "13px",
-                      "fontWeight": "normal",
                       "color": "#334155"
                     }
                   }
-                ],
-                "horizontalTextAlignment": "left"
+                ]
               },
               {
                 "textRuns": [
@@ -93,12 +84,10 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "13px",
-                      "fontWeight": "normal",
                       "color": "#334155"
                     }
                   }
-                ],
-                "horizontalTextAlignment": "left"
+                ]
               }
             ]
           }

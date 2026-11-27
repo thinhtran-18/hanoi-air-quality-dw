@@ -61,7 +61,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Chất ô nhiễm'"
+                  "Value": "'Chất ô nhiễm (lọc chung)'"
                 }
               }
             },

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "a1000000000000000006",
   "position": {
-    "x": 884,
+    "x": 854,
     "y": 225,
     "z": 1005,
     "height": 405,
-    "width": 1012,
+    "width": 1042,
     "tabOrder": 1005
   },
   "visual": {
@@ -51,20 +51,6 @@
                       "Entity": "FactAirQuality"
                     }
                   },
-                  "Property": "Số phép đo hợp lệ"
-                }
-              },
-              "queryRef": "FactAirQuality.Số phép đo hợp lệ",
-              "nativeQueryRef": "Số phép đo hợp lệ"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactAirQuality"
-                    }
-                  },
                   "Property": "Số giờ trạm-chất"
                 }
               },
@@ -79,11 +65,25 @@
                       "Entity": "FactAirQuality"
                     }
                   },
-                  "Property": "Số ngày có dữ liệu"
+                  "Property": "Số giờ thiếu"
                 }
               },
-              "queryRef": "FactAirQuality.Số ngày có dữ liệu",
-              "nativeQueryRef": "Số ngày có dữ liệu"
+              "queryRef": "FactAirQuality.Số giờ thiếu",
+              "nativeQueryRef": "Số giờ thiếu"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactAirQuality"
+                    }
+                  },
+                  "Property": "Độ phủ (%)"
+                }
+              },
+              "queryRef": "FactAirQuality.Độ phủ (%)",
+              "nativeQueryRef": "Độ phủ (%)"
             },
             {
               "field": {
@@ -263,7 +263,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Bảng độ phủ và thống kê nồng độ (µg/m³) theo Trạm – Chất (kỳ vọng cả năm: 8.784 giờ/trạm/chất)'"
+                  "Value": "'Bảng độ phủ (so với 8.784 giờ kỳ vọng năm 2024) và thống kê nồng độ (µg/m³) theo Trạm – Chất'"
                 }
               }
             },

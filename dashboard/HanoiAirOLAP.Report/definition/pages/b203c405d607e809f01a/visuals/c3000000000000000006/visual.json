@@ -3,11 +3,11 @@
   "name": "c3000000000000000006",
   "position": {
     "x": 24,
-    "y": 112,
-    "z": 1005,
-    "height": 320,
+    "y": 225,
+    "z": 1007,
+    "height": 305,
     "width": 1180,
-    "tabOrder": 1005
+    "tabOrder": 1007
   },
   "visual": {
     "visualType": "tableEx",
@@ -65,20 +65,6 @@
                       "Entity": "FactAirQuality"
                     }
                   },
-                  "Property": "Số phép đo hợp lệ"
-                }
-              },
-              "queryRef": "FactAirQuality.Số phép đo hợp lệ",
-              "nativeQueryRef": "Số phép đo hợp lệ"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactAirQuality"
-                    }
-                  },
                   "Property": "Số giờ trạm-chất"
                 }
               },
@@ -93,11 +79,11 @@
                       "Entity": "FactAirQuality"
                     }
                   },
-                  "Property": "Nồng độ trung bình"
+                  "Property": "Số giờ thiếu"
                 }
               },
-              "queryRef": "FactAirQuality.Nồng độ trung bình",
-              "nativeQueryRef": "Nồng độ trung bình"
+              "queryRef": "FactAirQuality.Số giờ thiếu",
+              "nativeQueryRef": "Số giờ thiếu"
             },
             {
               "field": {
@@ -107,11 +93,25 @@
                       "Entity": "FactAirQuality"
                     }
                   },
-                  "Property": "Cực tiểu (µg/m³)"
+                  "Property": "Độ phủ (%)"
                 }
               },
-              "queryRef": "FactAirQuality.Cực tiểu (µg/m³)",
-              "nativeQueryRef": "Cực tiểu (µg/m³)"
+              "queryRef": "FactAirQuality.Độ phủ (%)",
+              "nativeQueryRef": "Độ phủ (%)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactAirQuality"
+                    }
+                  },
+                  "Property": "Nồng độ trung bình"
+                }
+              },
+              "queryRef": "FactAirQuality.Nồng độ trung bình",
+              "nativeQueryRef": "Nồng độ trung bình"
             },
             {
               "field": {
@@ -263,7 +263,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tóm tắt theo Trạm – Cảm biến – Chất (tập giờ hiện có của từng trạm)'"
+                  "Value": "'Độ phủ và thống kê theo Trạm – Cảm biến – Chất (trên tập giờ riêng từng trạm)'"
                 }
               }
             },

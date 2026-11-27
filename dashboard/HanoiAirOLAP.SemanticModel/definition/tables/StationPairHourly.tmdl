@@ -1,0 +1,106 @@
+table StationPairHourly
+	lineageTag: 4ace16b6-6f9e-4e0a-bb0a-abc27577029f
+
+	/// Số giờ địa phương đồng thời mà cả hai trạm cùng có phép đo hợp lệ cho cùng chất.
+	measure 'Số giờ ghép cặp' = COUNTROWS('StationPairHourly')
+		formatString: #,##0
+		lineageTag: fa94b5c1-3fb3-4f2a-b117-e3e91460a9e9
+
+	/// Trung bình nồng độ tại Hàng Đậu tính trên tập giờ ghép cặp của một chất.
+	measure 'TB Hàng Đậu (giờ chung, µg/m³)' = IF(HASONEVALUE('DimPollutant'[PollutantCode]), AVERAGE('StationPairHourly'[ValueHangDau]), BLANK())
+		formatString: #,##0.00
+		lineageTag: d6161d2f-9645-44e8-a924-26c59c603267
+
+	/// Trung bình nồng độ tại Khương Trung tính trên tập giờ ghép cặp của một chất.
+	measure 'TB Khương Trung (giờ chung, µg/m³)' = IF(HASONEVALUE('DimPollutant'[PollutantCode]), AVERAGE('StationPairHourly'[ValueKhuongTrung]), BLANK())
+		formatString: #,##0.00
+		lineageTag: d4b5ff78-f617-4665-9080-03c85ac032e1
+
+	/// Chênh lệch trung bình (Hàng Đậu - Khương Trung) tính bằng µg/m³ trên cùng tập giờ ghép cặp; không phải phần trăm.
+	measure 'Chênh lệch TB (HĐ - KT, µg/m³)' = IF(HASONEVALUE('DimPollutant'[PollutantCode]), AVERAGE('StationPairHourly'[Difference]), BLANK())
+		formatString: +#,##0.00;-#,##0.00;0.00
+		lineageTag: 909e768e-4168-4843-8510-104e7fc316b0
+
+	/// Thông báo trạng thái khi không có giờ chung hoặc đang có giờ ghép cặp.
+	measure 'Thông báo giờ ghép cặp' = IF(COUNTROWS('StationPairHourly') = 0, "Không có giờ chung giữa hai trạm trong bộ lọc hiện tại.", "Đang đối chiếu " & FORMAT(COUNTROWS('StationPairHourly'), "#,##0") & " giờ đo đồng thời tại cả hai trạm.")
+		lineageTag: 289c7e88-48ab-4cbd-b6e7-e5093043130f
+
+	column HourLocal
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 481db187-134b-476f-aefc-f0108fb94176
+		summarizeBy: none
+		sourceColumn: HourLocal
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 67179637-be3d-4dce-a358-6ed1607d9a41
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c7207ac8-7273-4548-a276-0495ac92b84d
+		summarizeBy: none
+		sourceColumn: TimeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PollutantKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 529717b0-1955-4522-ae86-99a8e6771971
+		summarizeBy: none
+		sourceColumn: PollutantKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValueHangDau
+		dataType: double
+		lineageTag: 4528ec54-6b1a-49d6-a670-2081ff789a35
+		summarizeBy: none
+		sourceColumn: ValueHangDau
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ValueKhuongTrung
+		dataType: double
+		lineageTag: 1b1406ca-46e5-41f7-b16b-2beaed229ef3
+		summarizeBy: none
+		sourceColumn: ValueKhuongTrung
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Difference
+		dataType: double
+		lineageTag: 04daea0c-a967-4206-9673-867e3ff9e1f5
+		summarizeBy: none
+		sourceColumn: Difference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition StationPairHourly = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("localhost", "hanoi_air_dw", [CreateNavigationProperties=false]){[Schema="dbo",Item="vw_StationPairHourly"]}[Data]
+				in
+				  Source
+
+	annotation PBI_ResultType = Table
+

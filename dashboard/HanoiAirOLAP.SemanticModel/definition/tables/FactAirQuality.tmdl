@@ -22,34 +22,57 @@ table FactAirQuality
 	/// Trung bình PM10 của các phép đo hợp lệ trong bộ lọc hiện tại; không suy rộng cho khoảng thiếu.
 	measure 'PM10 trung bình (µg/m³)' = CALCULATE([Nồng độ trung bình], 'DimPollutant'[PollutantCode] = "pm10")
 		formatString: #,##0.00
+		lineageTag: 93bdcaa1-7011-4b40-8eef-18b74774434b
 
 	/// Giá trị lớn nhất của các phép đo hợp lệ trong ngữ cảnh một chất; trả về BLANK() khi trộn nhiều chất.
 	measure 'Cực đại (µg/m³)' = IF(HASONEVALUE('DimPollutant'[PollutantCode]), CALCULATE(MAX('FactAirQuality'[Value]), 'FactAirQuality'[IsValid] = TRUE()), BLANK())
 		formatString: #,##0.00
+		lineageTag: 3a567a22-93a7-4741-864b-02e062acce7f
 
 	/// Giá trị nhỏ nhất của các phép đo hợp lệ trong ngữ cảnh một chất; trả về BLANK() khi trộn nhiều chất.
 	measure 'Cực tiểu (µg/m³)' = IF(HASONEVALUE('DimPollutant'[PollutantCode]), CALCULATE(MIN('FactAirQuality'[Value]), 'FactAirQuality'[IsValid] = TRUE()), BLANK())
 		formatString: #,##0.00
+		lineageTag: f401374d-7e0a-463e-946c-363d710fa349
 
 	/// Giá trị PM2.5 lớn nhất trong bộ lọc hiện tại.
 	measure 'PM2.5 cực đại (µg/m³)' = CALCULATE([Cực đại (µg/m³)], 'DimPollutant'[PollutantCode] = "pm25")
 		formatString: #,##0.00
+		lineageTag: 68f94323-aead-4603-8426-10b5f263f9c4
 
 	/// Giá trị PM10 lớn nhất trong bộ lọc hiện tại.
 	measure 'PM10 cực đại (µg/m³)' = CALCULATE([Cực đại (µg/m³)], 'DimPollutant'[PollutantCode] = "pm10")
 		formatString: #,##0.00
+		lineageTag: 013a86fd-892e-4ac6-a346-8bd7e0c0ac37
 
 	/// Số ngày địa phương phân biệt có ít nhất một phép đo hợp lệ.
 	measure 'Số ngày có dữ liệu' = CALCULATE(DISTINCTCOUNT('FactAirQuality'[DateKey]), 'FactAirQuality'[IsValid] = TRUE())
 		formatString: #,##0
+		lineageTag: d9c22344-d5ed-482e-984c-30375ad149a8
 
 	/// Số mốc giờ địa phương phân biệt có ít nhất một phép đo hợp lệ trong ngữ cảnh lọc.
 	measure 'Số giờ quan sát' = CALCULATE(COUNTROWS(SUMMARIZE('FactAirQuality', 'FactAirQuality'[DateKey], 'FactAirQuality'[TimeKey])), 'FactAirQuality'[IsValid] = TRUE())
 		formatString: #,##0
+		lineageTag: 542249c5-5b62-474e-9e28-61e44e12802b
 
 	/// Số giờ phân biệt theo từng cặp trạm–chất có phép đo hợp lệ (dùng để đối chiếu độ phủ).
 	measure 'Số giờ trạm-chất' = CALCULATE(COUNTROWS(SUMMARIZE('FactAirQuality', 'FactAirQuality'[DateKey], 'FactAirQuality'[TimeKey], 'FactAirQuality'[StationKey], 'FactAirQuality'[PollutantKey])), 'FactAirQuality'[IsValid] = TRUE())
 		formatString: #,##0
+		lineageTag: 503c3a3c-88cc-4775-974c-b4789e7fae7f
+
+	/// Số giờ kỳ vọng trong ngữ cảnh ngày hiện tại (24 giờ/ngày; cả năm 2024 là 8.784 giờ).
+	measure 'Số giờ kỳ vọng' = COUNTROWS('DimDate') * 24
+		formatString: #,##0
+		lineageTag: 8d924811-344f-4187-a2a7-5ec042f0d715
+
+	/// Số giờ thiếu trong ngữ cảnh 1 trạm và 1 chất; trả về BLANK() khi chưa chọn riêng trạm và chất.
+	measure 'Số giờ thiếu' = IF(HASONEVALUE('DimStation'[StationName]) && HASONEVALUE('DimPollutant'[PollutantCode]), [Số giờ kỳ vọng] - [Số giờ trạm-chất], BLANK())
+		formatString: #,##0
+		lineageTag: 44147380-272d-4e8f-ba8a-7171709c8301
+
+	/// Tỷ lệ độ phủ giờ quan sát trên tổng số giờ kỳ vọng cho 1 trạm và 1 chất.
+	measure 'Độ phủ (%)' = IF(HASONEVALUE('DimStation'[StationName]) && HASONEVALUE('DimPollutant'[PollutantCode]), DIVIDE([Số giờ trạm-chất], [Số giờ kỳ vọng]), BLANK())
+		formatString: 0.00%
+		lineageTag: 526fb3b7-374e-4185-893d-733b5055c62e
 
 	column AirQualityKey
 		dataType: int64

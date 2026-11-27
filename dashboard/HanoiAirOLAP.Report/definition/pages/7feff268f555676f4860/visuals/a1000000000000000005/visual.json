@@ -6,7 +6,7 @@
     "y": 225,
     "z": 1004,
     "height": 405,
-    "width": 840,
+    "width": 810,
     "tabOrder": 1004
   },
   "visual": {
@@ -372,7 +372,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Độ phủ dữ liệu theo tháng — Số giờ trạm-chất (tháng 8/2024 không có phép đo)'"
+                  "Value": "'Độ phủ dữ liệu theo tháng — Số giờ trạm-chất (tháng 8/2024 trống)'"
                 }
               }
             },

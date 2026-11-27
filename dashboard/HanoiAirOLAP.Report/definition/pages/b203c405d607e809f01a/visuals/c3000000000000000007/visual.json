@@ -5,74 +5,103 @@
     "x": 1224,
     "y": 112,
     "z": 1006,
-    "height": 320,
+    "height": 97,
     "width": 672,
     "tabOrder": 1006
   },
   "visual": {
-    "visualType": "textbox",
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StationPairHourly"
+                    }
+                  },
+                  "Property": "Thông báo giờ ghép cặp"
+                }
+              },
+              "queryRef": "StationPairHourly.Thông báo giờ ghép cặp",
+              "nativeQueryRef": "Thông báo giờ ghép cặp"
+            }
+          ]
+        }
+      }
+    },
     "objects": {
-      "general": [
+      "value": [
         {
           "properties": {
-            "paragraphs": [
-              {
-                "textRuns": [
-                  {
-                    "value": "KHUNG SO SÁNH TẬP GIỜ GHÉP CẶP (HOÀN THIỆN Ở BƯỚC 14)",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "fontWeight": "bold",
-                      "color": "#0F172A"
-                    }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "• Theo kế hoạch Bước 13–14, hai trạm chỉ được so sánh trực tiếp khi cả hai cùng có phép đo hợp lệ tại cùng giờ địa phương và cùng chất.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "13px",
-                      "fontWeight": "normal",
-                      "color": "#334155"
-                    }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "• Ở Bước 14 sẽ tạo view dbo.vw_StationHourly và dbo.vw_StationPairHourly để bổ sung số giờ ghép cặp, trung bình từng trạm trên tập giờ chung và chênh lệch (µg/m³).",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "13px",
-                      "fontWeight": "normal",
-                      "color": "#334155"
-                    }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "• Bảng bên dưới hiển thị phép đo chi tiết kèm SourceId và BatchId để truy vết ngược về bảng nguồn hanoi_air_vn.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "13px",
-                      "fontWeight": "normal",
-                      "color": "#334155"
-                    }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
               }
-            ]
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "label": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "paddingUniform": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "layout": [
+        {
+          "properties": {
+            "paddingUniform": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ]
@@ -146,31 +175,57 @@
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "6D"
+                  "Value": "8D"
                 }
               }
             },
             "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "6D"
+                  "Value": "8D"
                 }
               }
             },
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "8D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "8D"
                 }
               }
             }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "customizeSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "verticalSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ]

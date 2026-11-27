@@ -9,6 +9,7 @@ Có thể mở **`00_chay_buoc6_ssms.sql`** và Execute toàn bộ trong SSMS đ
 3. `03_tao_dimensions.sql`: 5 dimension, chưa nạp metadata trạm/chất/cảm biến.
 4. `04_tao_fact.sql`: fact, unique grain, 5 FK chiều và FK lô, CHECK và chỉ mục.
 5. `05_nap_lich.sql`: 366 ngày năm 2024 và 24 mốc đầu giờ. Không tạo phép đo cho giờ thiếu.
+6. `06_tao_views_buoc14.sql`: tạo `dbo.vw_StationHourly` và `dbo.vw_StationPairHourly` phục vụ so sánh ghép cặp công bằng ở Bước 14.
 
 Ví dụ PowerShell tại gốc repo:
 

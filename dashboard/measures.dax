@@ -92,3 +92,53 @@ CALCULATE(
     ),
     'FactAirQuality'[IsValid] = TRUE()
 )
+
+Số giờ kỳ vọng =
+COUNTROWS('DimDate') * 24
+
+Số giờ thiếu =
+IF(
+    HASONEVALUE('DimStation'[StationName]) && HASONEVALUE('DimPollutant'[PollutantCode]),
+    [Số giờ kỳ vọng] - [Số giờ trạm-chất],
+    BLANK()
+)
+
+Độ phủ (%) =
+IF(
+    HASONEVALUE('DimStation'[StationName]) && HASONEVALUE('DimPollutant'[PollutantCode]),
+    DIVIDE([Số giờ trạm-chất], [Số giờ kỳ vọng]),
+    BLANK()
+)
+
+-- Bảng chứa measures ghép cặp: StationPairHourly
+
+Số giờ ghép cặp =
+COUNTROWS('StationPairHourly')
+
+TB Hàng Đậu (giờ chung, µg/m³) =
+IF(
+    HASONEVALUE('DimPollutant'[PollutantCode]),
+    AVERAGE('StationPairHourly'[ValueHangDau]),
+    BLANK()
+)
+
+TB Khương Trung (giờ chung, µg/m³) =
+IF(
+    HASONEVALUE('DimPollutant'[PollutantCode]),
+    AVERAGE('StationPairHourly'[ValueKhuongTrung]),
+    BLANK()
+)
+
+Chênh lệch TB (HĐ - KT, µg/m³) =
+IF(
+    HASONEVALUE('DimPollutant'[PollutantCode]),
+    AVERAGE('StationPairHourly'[Difference]),
+    BLANK()
+)
+
+Thông báo giờ ghép cặp =
+IF(
+    COUNTROWS('StationPairHourly') = 0,
+    "Không có giờ chung giữa hai trạm trong bộ lọc hiện tại.",
+    "Đang đối chiếu " & FORMAT(COUNTROWS('StationPairHourly'), "#,##0") & " giờ đo đồng thời tại cả hai trạm."
+)
