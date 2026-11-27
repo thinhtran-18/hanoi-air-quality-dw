@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram name="GALAXY | LƯỢC ĐỒ DẢI NGÂN HÀ">
+    <mxGraphModel grid="1" pageWidth="2500" pageHeight="1550">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="GALAXY | LƯỢC ĐỒ DẢI NGÂN HÀ" vertex="1" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=34;">
+          <mxGeometry as="geometry" x="50" y="30" width="2400" height="50" />
+        </mxCell>
+        <mxCell id="subtitle" value="Hai fact khác grain, dùng chung DimDate / DimStation / DimPollutant. Các giao điểm đường nối không tạo quan hệ." vertex="1" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=20;">
+          <mxGeometry as="geometry" x="50" y="85" width="2400" height="40" />
+        </mxCell>
+        <mxCell id="e0" source="DimDate" target="FactAirQuality" value="1 → N (DateKey)" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#51758f;fontSize=16;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e1" source="DimStation" target="FactAirQuality" value="1 → N (StationKey)" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#51758f;fontSize=16;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1440" y="630" />
+              <mxPoint x="1060" y="630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" source="DimPollutant" target="FactAirQuality" value="1 → N (PollutantKey)" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#51758f;fontSize=16;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="2040" y="570" />
+              <mxPoint x="1170" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" source="DimDate" target="FactCoverageDaily" value="1 → N (DateKey)" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#51758f;fontSize=16;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1220" y="345" />
+              <mxPoint x="1220" y="660" />
+              <mxPoint x="1760" y="660" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" source="DimStation" target="FactCoverageDaily" value="1 → N (StationKey)" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#51758f;fontSize=16;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1580" y="610" />
+              <mxPoint x="1950" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" source="DimPollutant" target="FactCoverageDaily" value="1 → N (PollutantKey)" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#51758f;fontSize=16;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" source="DimTime" target="FactAirQuality" value="1 → N (TimeKey)" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#51758f;fontSize=16;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="590" y="795" />
+              <mxPoint x="590" y="880" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" source="DimSensor" target="FactAirQuality" value="1 → N (SensorKey)" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeColor=#51758f;fontSize=16;">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="610" y="1150" />
+              <mxPoint x="610" y="980" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DimDate" vertex="1" parent="1" value="&lt;b&gt;DimDate&lt;/b&gt;&lt;br&gt;&lt;br&gt;DateKey : int [PK]&lt;br&gt;FullDate : date&lt;br&gt;DayOfMonth : tinyint&lt;br&gt;MonthNumber : tinyint&lt;br&gt;QuarterNumber : tinyint&lt;br&gt;YearNumber : smallint&lt;br&gt;DayOfWeekISO : tinyint&lt;br&gt;DayName : nvarchar(12)" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontSize=18;fillColor=#ffffff;strokeColor=#23657a;">
+          <mxGeometry as="geometry" x="700" y="160" width="470" height="370" />
+        </mxCell>
+        <mxCell id="DimTime" vertex="1" parent="1" value="&lt;b&gt;DimTime&lt;/b&gt;&lt;br&gt;&lt;br&gt;TimeKey : int [PK]&lt;br&gt;FullTime : time(0)&lt;br&gt;HourNumber : tinyint&lt;br&gt;MinuteNumber : tinyint&lt;br&gt;SecondNumber : tinyint" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontSize=18;fillColor=#ffffff;strokeColor=#23657a;">
+          <mxGeometry as="geometry" x="50" y="660" width="440" height="270" />
+        </mxCell>
+        <mxCell id="DimStation" vertex="1" parent="1" value="&lt;b&gt;DimStation&lt;/b&gt;&lt;br&gt;&lt;br&gt;StationKey : int IDENTITY(1,1) [PK]&lt;br&gt;StationId : int&lt;br&gt;StationName : nvarchar(160)&lt;br&gt;Latitude : decimal(10,6)&lt;br&gt;Longitude : decimal(10,6)&lt;br&gt;CityName : nvarchar(80)&lt;br&gt;DistrictName : nvarchar(80)" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontSize=18;fillColor=#ffffff;strokeColor=#23657a;">
+          <mxGeometry as="geometry" x="1330" y="160" width="480" height="350" />
+        </mxCell>
+        <mxCell id="DimPollutant" vertex="1" parent="1" value="&lt;b&gt;DimPollutant&lt;/b&gt;&lt;br&gt;&lt;br&gt;PollutantKey : int IDENTITY(1,1) [PK]&lt;br&gt;PollutantCode : nvarchar(20)&lt;br&gt;PollutantName : nvarchar(40)&lt;br&gt;Unit : nvarchar(40)" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontSize=18;fillColor=#ffffff;strokeColor=#23657a;">
+          <mxGeometry as="geometry" x="1970" y="160" width="480" height="250" />
+        </mxCell>
+        <mxCell id="DimSensor" vertex="1" parent="1" value="&lt;b&gt;DimSensor&lt;/b&gt;&lt;br&gt;&lt;br&gt;SensorKey : int IDENTITY(1,1) [PK]&lt;br&gt;SensorId : int&lt;br&gt;SensorDescription : nvarchar(255)" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontSize=18;fillColor=#ffffff;strokeColor=#23657a;">
+          <mxGeometry as="geometry" x="50" y="1050" width="440" height="200" />
+        </mxCell>
+        <mxCell id="FactAirQuality" vertex="1" parent="1" value="&lt;b&gt;FactAirQuality&lt;/b&gt;&lt;br&gt;&lt;br&gt;AirQualityKey : bigint IDENTITY(1,1) [PK]&lt;br&gt;DateKey : int [FK]&lt;br&gt;TimeKey : int [FK]&lt;br&gt;StationKey : int [FK]&lt;br&gt;PollutantKey : int [FK]&lt;br&gt;SensorKey : int [FK]&lt;br&gt;ObservedAtSource : datetimeoffset(0)&lt;br&gt;ObservedAtUTC : datetime2(0)&lt;br&gt;ObservedAtLocal : datetimeoffset(0)&lt;br&gt;Value : float(53)&lt;br&gt;IsValid : bit&lt;br&gt;SourceId : bigint&lt;br&gt;BatchId : uniqueidentifier" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontSize=18;fillColor=#ffffff;strokeColor=#23657a;">
+          <mxGeometry as="geometry" x="700" y="720" width="550" height="520" />
+        </mxCell>
+        <mxCell id="FactCoverageDaily" vertex="1" parent="1" value="&lt;b&gt;FactCoverageDaily&lt;/b&gt;&lt;br&gt;&lt;br&gt;CoverageKey : bigint IDENTITY(1,1) [PK]&lt;br&gt;DateKey : int [FK]&lt;br&gt;StationKey : int [FK]&lt;br&gt;PollutantKey : int [FK]&lt;br&gt;ExpectedHourCount : tinyint&lt;br&gt;ObservedHourCount : tinyint&lt;br&gt;MissingHourCount : tinyint&lt;br&gt;ValidMeasurementCount : int&lt;br&gt;BatchId : uniqueidentifier" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontSize=18;fillColor=#ffffff;strokeColor=#23657a;">
+          <mxGeometry as="geometry" x="1650" y="720" width="650" height="400" />
+        </mxCell>
+        <mxCell id="note0" value="FactAirQuality: trạm + cảm biến + thời điểm UTC + chất. FactCoverageDaily: ngày local + trạm + chất." vertex="1" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=20;">
+          <mxGeometry as="geometry" x="50" y="1370" width="2400" height="35" />
+        </mxCell>
+        <mxCell id="note1" value="UQ độ phủ: (DateKey, StationKey, PollutantKey). Không nối trực tiếp hai fact, không gắn DimTime/DimSensor vào fact ngày." vertex="1" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=20;">
+          <mxGeometry as="geometry" x="50" y="1406" width="2400" height="35" />
+        </mxCell>
+        <mxCell id="note2" value="Giờ có đo = số giờ phân biệt có phép đo hợp lệ; giờ thiếu = 24 - giờ có đo. Giờ thiếu không phải nồng độ 0." vertex="1" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=20;">
+          <mxGeometry as="geometry" x="50" y="1442" width="2400" height="35" />
+        </mxCell>
+        <mxCell id="note3" value="Phương án mở rộng để so sánh; triển khai chính vẫn là STAR. CoverageDaily chưa được tạo trong SQL Server." vertex="1" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=20;">
+          <mxGeometry as="geometry" x="50" y="1478" width="2400" height="35" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

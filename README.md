@@ -17,6 +17,14 @@ kiểm chứng grain trên CSV lẫn SQL Server.
 - [Sơ đồ PNG](docs/thiet_ke/star_schema.png) · [Bản draw.io](docs/thiet_ke/star_schema.drawio)
 - [Từ điển dữ liệu](docs/thiet_ke/tu_dien_du_lieu.md)
 - [Báo cáo bước 5](report/cac_phan/02_thiet_ke_kho.md)
+- [Bước 5 mở rộng: cả ba lược đồ và so sánh](docs/thiet_ke/so_sanh_ba_luoc_do.md)
+- Bông tuyết: [PNG](docs/thiet_ke/snowflake_schema.png) · [draw.io](docs/thiet_ke/snowflake_schema.drawio)
+- Dải ngân hà: [PNG](docs/thiet_ke/galaxy_schema.png) · [draw.io](docs/thiet_ke/galaxy_schema.drawio)
+
+Theo yêu cầu giảng viên, đã vẽ đủ **hình sao, bông tuyết và dải ngân hà**.
+**Chọn hình sao để triển khai chính**; hai mô hình còn lại là phương án
+thiết kế để so sánh, có từ điển riêng. Galaxy minh họa thêm fact độ phủ ngày,
+đã tính thử và đối chiếu kết quả với khảo sát bước 4.
 
 Bộ nguồn có 23.036 phép đo; phạm vi kho PM2.5/PM10 có 11.500 phép đo.
 Đây là dữ liệu lịch sử không liên tục, chỉ phủ khoảng 28–37% giờ năm 2024

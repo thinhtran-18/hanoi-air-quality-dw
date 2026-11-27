@@ -2,6 +2,20 @@
 
 Ngày thực hiện: 27/11/2026. Trạng thái: **đã đạt toàn bộ điều kiện bước 5 ở mức thiết kế**. Chưa triển khai bảng kho và ETL; việc đó thuộc các bước tiếp theo. SSIS không phải điều kiện cần để hoàn thành thiết kế này.
 
+## Bổ sung theo yêu cầu giảng viên: đủ ba loại lược đồ
+
+Đã bổ sung Snowflake và Galaxy dưới dạng **draw.io + PNG**, từ điển riêng và tài liệu so sánh tại `docs/thiet_ke/so_sanh_ba_luoc_do.md`. Star vẫn là mô hình triển khai chính theo lựa chọn người dùng; hai mô hình bổ sung chưa được tạo bảng trong SQL Server.
+
+| Phương án | Sản phẩm / cấu trúc | Kiểm tra |
+| --- | --- | --- |
+| Star | star_schema.drawio/.png; 1 fact + 5 dimension | Đã kiểm chứng tại bước 5 ban đầu |
+| Snowflake | snowflake_schema.drawio/.png; thêm DimCity và DimUnit; 8 bảng / 46 cột / 7 quan hệ | Có FK phù hợp từng quan hệ; từ điển cùng đặc tả; PNG đã kiểm tra trực quan |
+| Galaxy | galaxy_schema.drawio/.png; thêm FactCoverageDaily, dùng chung 3 chiều; 7 bảng / 49 cột / 8 quan hệ | Hai grain và unique riêng; không nối hai fact; PNG đã kiểm tra trực quan |
+
+FactCoverageDaily có grain ngày local–trạm–chất. Đã tính thử đủ **1.464 tổ hợp** từ lịch và CSV nguồn, tổng số giờ có dữ liệu của từng trạm/chất khớp bước 4. Giờ có dữ liệu đếm giờ phân biệt; giờ thiếu không phải nồng độ 0. Tệp tính thử dùng natural key để đối soát, chưa phải fact đã nạp.
+
+Minh chứng bổ sung: `report/minh_chung/buoc5_kiem_tra_ba_luoc_do.json`, `buoc5_galaxy_do_phu_ngay.csv`; tái lập bằng `python tools/tao_luoc_do_bo_sung.py`. **Yêu cầu mở rộng bước 5 đã hoàn thành:** đủ ba sơ đồ, grain/khóa/quan hệ, từ điển, bảng so sánh và quyết định chọn Star. Phần dưới ghi nhận kiểm chứng mô hình Star ban đầu.
+
 ## Sản phẩm đã thực hiện
 
 1. Chốt grain: một phép đo của một chất, tại một trạm, một cảm biến, một thời điểm; giữ đầy đủ sensor và thời điểm UTC chính xác.

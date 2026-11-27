@@ -1,0 +1,51 @@
+{
+  "snowflake": {
+    "tables": 8,
+    "facts": 1,
+    "columns": 46,
+    "relationships": 7,
+    "status": "PASS"
+  },
+  "galaxy": {
+    "tables": 7,
+    "facts": 2,
+    "columns": 49,
+    "relationships": 8,
+    "status": "PASS"
+  },
+  "coverage_csv_check": {
+    "daily_rows": 1464,
+    "annual": [
+      {
+        "StationId": "2161299",
+        "PollutantCode": "pm25",
+        "ExpectedHourCount": 8784,
+        "ObservedHourCount": 3251,
+        "MissingHourCount": 5533
+      },
+      {
+        "StationId": "2161299",
+        "PollutantCode": "pm10",
+        "ExpectedHourCount": 8784,
+        "ObservedHourCount": 3253,
+        "MissingHourCount": 5531
+      },
+      {
+        "StationId": "2161301",
+        "PollutantCode": "pm25",
+        "ExpectedHourCount": 8784,
+        "ObservedHourCount": 2498,
+        "MissingHourCount": 6286
+      },
+      {
+        "StationId": "2161301",
+        "PollutantCode": "pm10",
+        "ExpectedHourCount": 8784,
+        "ObservedHourCount": 2498,
+        "MissingHourCount": 6286
+      }
+    ],
+    "status": "PASS - minh họa tính từ CSV; chưa nạp fact Galaxy"
+  },
+  "selected_implementation": "Star Schema"
+}

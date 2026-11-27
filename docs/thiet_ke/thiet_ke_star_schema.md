@@ -2,6 +2,8 @@
 
 Ngày hoàn thành thiết kế: 27/11/2026. Đầu vào: phạm vi và khảo sát bước 1–4 tại commit `6a71786`; yêu cầu bước 5 trong kế hoạch và ảnh người dùng cung cấp. Tài liệu này chốt thiết kế để bước 6 tạo bảng kho và bước 7 triển khai ETL. Chưa tạo database kho, chưa nạp fact, chưa dựng mô hình Power BI.
 
+Bổ sung theo yêu cầu giảng viên: đã vẽ cả Snowflake và Galaxy, xem [so sánh ba lược đồ](so_sanh_ba_luoc_do.md). **Star trong tài liệu này vẫn là mô hình triển khai chính**; từ điển và DDL bước sau không cần đưa thêm bảng của hai phương án vào kho chính.
+
 ## 1. Phạm vi và grain
 
 Một dòng `dbo.FactAirQuality` là **một phép đo của một chất, tại một trạm, một cảm biến, một thời điểm chính xác**. Không gộp các cảm biến, không cắt timestamp thành giờ khi tạo khóa. Nguồn hiện tại có các mốc đầu giờ nên vẫn biểu diễn đủ bằng độ chính xác giây; nguồn tương lai có phần giây phải nâng độ chính xác trước khi nạp.
