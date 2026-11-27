@@ -1,0 +1,29 @@
+{
+  "baseline_commit": "6540e47bccd8025a1117b348ae6f91d574084042",
+  "manifest_entries": 325,
+  "manifest_unique_filenames": 325,
+  "raw_files": 325,
+  "files_read": 325,
+  "missing": [],
+  "extra": [],
+  "duplicate_manifest_names": [],
+  "raw_rows": 23036,
+  "merged_rows": 23036,
+  "raw_only_rows": 0,
+  "merged_only_rows": 0,
+  "raw_duplicate_keys": 0,
+  "merged_duplicate_keys": 0,
+  "station_parameter_counts": {
+    "2161299/co": 3252,
+    "2161299/no2": 3259,
+    "2161299/pm10": 3253,
+    "2161299/pm25": 3251,
+    "2161301/co": 2528,
+    "2161301/no2": 2497,
+    "2161301/pm10": 2498,
+    "2161301/pm25": 2498
+  },
+  "source_csv_sha256": "ba914a66bea882b5593948b5ef96b774fa5e96e55370874dd9d89dcf203d73c8",
+  "sql_sha256": "72848e080b4240eee4c2471d3b5f1fd1bd4e14fe0ea67172215c68fb30854686",
+  "issues": []
+}
