@@ -1,0 +1,14 @@
+MaTest,DauVao,ThaoTac,KyVong,ThucTe,TrangThai,MinhChung
+T01,Nguon PM,Khoi tao kho va nap lan dau,11500 fact,11500 fact theo bien ban buoc 8,PASS lich su,report/cac_phan/05_nap_kho.md
+T02,Nguon PM,Chay lai SSIS,Fact khong tang va log da co,Hai batch Success moi lan 11500 da co va 0 moi,PASS lich su,report/cac_phan/06_ssis_buoc9.md
+T03,Sensor test chua co dimension,Phan loai va goi LoadFact trong transaction,Loi 51305 va fact khong doi,Script kiem tra dieu kien thanh cong va rollback,PASS,sql/checks/kiem_thu_thieu_dimension.sql
+T04,Du lieu staging tong hop,Goi phan loai trong transaction,Nhan biet dong trung va khong nhan fact,Script kiem tra duplicate conflict va rollback thanh cong,PASS,sql/checks/kiem_thu_buoc7.sql
+T05,Cung grain gia tri khac,Thu nap fact trong transaction,Loi 51306 va rollback,Script hoan tat va kiem tra fact khong doi,PASS,sql/checks/kiem_thu_buoc8.sql
+T06,Loi Data Flow thuc te,Chay package voi bieu thuc GUID loi,Batch Failed,Anh BatchLog truoc cho thay Failed,PASS lich su,report/cac_phan/06_ssis_buoc9.md
+T07,Timestamp tong hop ngay moi local,Phan loai trong transaction,UTC ngay truoc va DateKey local,Script kiem tra DateKey va UTC thanh cong,PASS,sql/checks/kiem_thu_buoc7.sql
+T08,Fact hien tai,Kiem tra khoa ngoai va grain,Khong mo coi va khong trung,0 mo coi va khong co nhom trung,PASS,sql/checks/kiem_tra_kho.sql
+T09,Fact va nguon SQL,So sanh cac truong trong script,Khong co dong khac,0 dong khac theo phep so sanh hien tai,PASS co gioi han,sql/checks/kiem_tra_kho.sql
+T10,Kho trong doc lap,Tao kho moi va chay SSIS tu dau,11500 fact va log Success,Chua thuc hien lan kiem thu doc lap,CHUA THU,
+T11,Bon nhom tram chat,So mau va min max nguon kho,Co mau du nhom va gia tri khop,4 nhom co mau va min max khop,PASS,sql/checks/doi_soat_buoc10.sql
+T12,Thoi gian trong fact,Doi chieu UTC local va DateKey,Khong sai,0 dong sai theo cong thuc truy van,PASS,sql/checks/doi_soat_buoc10.sql
+T13,Batch thanh cong,Kiem tra can doi so dong,Khong sai,0 batch Success sai can doi,PASS,sql/checks/doi_soat_buoc10.sql

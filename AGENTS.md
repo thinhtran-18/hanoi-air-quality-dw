@@ -62,6 +62,7 @@ Không mặc định công cụ đã hoạt động chỉ vì đã cài hoặc t
 | 7: chuẩn hóa staging | Đã triển khai và kiểm thử theo phạm vi hiện tại | Batch 11.500 accepted; thử lỗi/trùng/xung đột rollback; giới hạn khóa batch và nhật ký lỗi trong `report/cac_phan/04_chuan_hoa_staging.md` |
 | 8: logic nạp | Đã triển khai và kiểm chứng hai lần qua sqlcmd | 11.500 fact; chạy lại 0 mới; còn các giới hạn về test SSMS, metadata Type 1 và chi tiết xung đột trong báo cáo |
 | 9: SSIS | Luồng chính đã kiểm chứng; còn việc bàn giao | Hai batch Success: mỗi batch trích 11.500, 0 mới, 11.500 đã có; fact 11.500. Đã có ảnh cấu hình; còn kiểm tra tham số kết nối và batch Running cũ; xem hướng dẫn bước 9 |
+| 10: Kiểm thử ETL và kho | Đang thực hiện | Đã đối soát nguồn/kho và chạy các ca trùng, xung đột, thiếu dimension, thời gian trong SSMS; xem `report/minh_chung/ket_qua_etl.csv`. Chưa chạy SSIS trên kho trống độc lập và chưa giả lập lỗi giữa luồng hoàn chỉnh. |
 | ETL | T-SQL và package SSIS đã chạy | Nguồn → staging → dimension/fact; có nhánh lỗi và log, còn giới hạn vận hành được ghi trong hướng dẫn bước 9 |
 | OLAP / Power BI / báo cáo tổng hợp | Chưa thực hiện | Triển khai sau khi kho và ETL đã kiểm chứng |
 
