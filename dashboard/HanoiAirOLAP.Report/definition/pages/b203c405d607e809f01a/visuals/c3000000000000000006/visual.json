@@ -1,0 +1,300 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "c3000000000000000006",
+  "position": {
+    "x": 24,
+    "y": 112,
+    "z": 1005,
+    "height": 320,
+    "width": 1180,
+    "tabOrder": 1005
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimStation"
+                    }
+                  },
+                  "Property": "StationName"
+                }
+              },
+              "queryRef": "DimStation.StationName",
+              "nativeQueryRef": "StationName"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimSensor"
+                    }
+                  },
+                  "Property": "SensorId"
+                }
+              },
+              "queryRef": "DimSensor.SensorId",
+              "nativeQueryRef": "SensorId"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimPollutant"
+                    }
+                  },
+                  "Property": "PollutantCode"
+                }
+              },
+              "queryRef": "DimPollutant.PollutantCode",
+              "nativeQueryRef": "PollutantCode"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactAirQuality"
+                    }
+                  },
+                  "Property": "Số phép đo hợp lệ"
+                }
+              },
+              "queryRef": "FactAirQuality.Số phép đo hợp lệ",
+              "nativeQueryRef": "Số phép đo hợp lệ"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactAirQuality"
+                    }
+                  },
+                  "Property": "Số giờ trạm-chất"
+                }
+              },
+              "queryRef": "FactAirQuality.Số giờ trạm-chất",
+              "nativeQueryRef": "Số giờ trạm-chất"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactAirQuality"
+                    }
+                  },
+                  "Property": "Nồng độ trung bình"
+                }
+              },
+              "queryRef": "FactAirQuality.Nồng độ trung bình",
+              "nativeQueryRef": "Nồng độ trung bình"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactAirQuality"
+                    }
+                  },
+                  "Property": "Cực tiểu (µg/m³)"
+                }
+              },
+              "queryRef": "FactAirQuality.Cực tiểu (µg/m³)",
+              "nativeQueryRef": "Cực tiểu (µg/m³)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactAirQuality"
+                    }
+                  },
+                  "Property": "Cực đại (µg/m³)"
+                }
+              },
+              "queryRef": "FactAirQuality.Cực đại (µg/m³)",
+              "nativeQueryRef": "Cực đại (µg/m³)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CBD5E1'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tóm tắt theo Trạm – Cảm biến – Chất (tập giờ hiện có của từng trạm)'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F172A'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
