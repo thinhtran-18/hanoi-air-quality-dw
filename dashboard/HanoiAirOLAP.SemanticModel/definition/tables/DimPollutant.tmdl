@@ -3,6 +3,7 @@ table DimPollutant
 
 	column PollutantKey
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 8e7a6e17-0022-456d-8f98-e31d75b52c41
 		summarizeBy: none

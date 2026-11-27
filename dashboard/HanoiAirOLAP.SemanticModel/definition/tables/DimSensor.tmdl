@@ -3,6 +3,7 @@ table DimSensor
 
 	column SensorKey
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 69a3721d-54e8-4d82-b845-0f4e55b66acf
 		summarizeBy: none

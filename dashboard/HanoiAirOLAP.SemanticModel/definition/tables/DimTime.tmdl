@@ -3,6 +3,7 @@ table DimTime
 
 	column TimeKey
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 21042ad2-d189-433f-a06b-6c04b58a72cc
 		summarizeBy: none

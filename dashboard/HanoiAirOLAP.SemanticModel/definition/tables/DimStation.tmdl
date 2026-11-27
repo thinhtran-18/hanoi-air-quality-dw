@@ -3,6 +3,7 @@ table DimStation
 
 	column StationKey
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 24876bed-9e92-41a9-93f9-dfd16cfd913a
 		summarizeBy: none

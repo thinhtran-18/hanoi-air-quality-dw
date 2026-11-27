@@ -1,0 +1,94 @@
+-- Bộ DAX Measures chuẩn cho mô hình kho dữ liệu chất lượng không khí Hà Nội (Bước 12)
+-- Bảng chứa measures: FactAirQuality
+
+Số phép đo hợp lệ =
+CALCULATE(
+    COUNTROWS('FactAirQuality'),
+    'FactAirQuality'[IsValid] = TRUE()
+)
+
+Nồng độ trung bình =
+IF(
+    HASONEVALUE('DimPollutant'[PollutantCode]),
+    CALCULATE(
+        AVERAGE('FactAirQuality'[Value]),
+        'FactAirQuality'[IsValid] = TRUE()
+    ),
+    BLANK()
+)
+
+PM2.5 trung bình (µg/m³) =
+CALCULATE(
+    [Nồng độ trung bình],
+    'DimPollutant'[PollutantCode] = "pm25"
+)
+
+PM10 trung bình (µg/m³) =
+CALCULATE(
+    [Nồng độ trung bình],
+    'DimPollutant'[PollutantCode] = "pm10"
+)
+
+Cực đại (µg/m³) =
+IF(
+    HASONEVALUE('DimPollutant'[PollutantCode]),
+    CALCULATE(
+        MAX('FactAirQuality'[Value]),
+        'FactAirQuality'[IsValid] = TRUE()
+    ),
+    BLANK()
+)
+
+Cực tiểu (µg/m³) =
+IF(
+    HASONEVALUE('DimPollutant'[PollutantCode]),
+    CALCULATE(
+        MIN('FactAirQuality'[Value]),
+        'FactAirQuality'[IsValid] = TRUE()
+    ),
+    BLANK()
+)
+
+PM2.5 cực đại (µg/m³) =
+CALCULATE(
+    [Cực đại (µg/m³)],
+    'DimPollutant'[PollutantCode] = "pm25"
+)
+
+PM10 cực đại (µg/m³) =
+CALCULATE(
+    [Cực đại (µg/m³)],
+    'DimPollutant'[PollutantCode] = "pm10"
+)
+
+Số ngày có dữ liệu =
+CALCULATE(
+    DISTINCTCOUNT('FactAirQuality'[DateKey]),
+    'FactAirQuality'[IsValid] = TRUE()
+)
+
+Số giờ quan sát =
+CALCULATE(
+    COUNTROWS(
+        SUMMARIZE(
+            'FactAirQuality',
+            'FactAirQuality'[DateKey],
+            'FactAirQuality'[TimeKey]
+        )
+    ),
+    'FactAirQuality'[IsValid] = TRUE()
+)
+
+Số giờ trạm-chất =
+CALCULATE(
+    COUNTROWS(
+        SUMMARIZE(
+            'FactAirQuality',
+            'FactAirQuality'[DateKey],
+            'FactAirQuality'[TimeKey],
+            'FactAirQuality'[StationKey],
+            'FactAirQuality'[PollutantKey]
+        )
+    ),
+    'FactAirQuality'[IsValid] = TRUE()
+)

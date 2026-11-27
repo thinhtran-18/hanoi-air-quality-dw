@@ -20,7 +20,7 @@ Dự án đồ án kho dữ liệu phục vụ phân tích đa chiều nồng đ
 | SSMS / sqlcmd | Thực thi script và kiểm tra dữ liệu, ràng buộc, kết quả ETL |
 | Visual Studio / SSIS | SSIS Projects 2.2 đã cài; package ETL chạy thành công hai lần, còn giới hạn và minh chứng như hướng dẫn bước 9 |
 | Analysis Services / OLAP | Cube `Air Quality` (`HanoiAirOLAP`, 5 chiều gồm `DimSensor`) đã deploy/process; 3 MDX khớp SQL; `HanoiAirCubeImported` build 0 lỗi, còn 1 cảnh báo provider |
-| Power BI Desktop | Mô hình PBIP 6 bảng, 5 quan hệ, measure cơ bản và trang nháp Bước 11 khớp SQL; chưa hoàn thiện 3 trang và view ghép cặp (Bước 12–14) |
+| Power BI Desktop | Mô hình PBIP 6 bảng, 5 quan hệ, tắt Auto Date/Time, đánh dấu Date Table, ẩn khóa kỹ thuật và đủ 11 DAX measures (Bước 12 khớp SQL); chưa dựng đủ 3 trang và view ghép cặp (Bước 13–14) |
 | Python / Pillow | Công cụ đối soát, tạo tài liệu và sơ đồ; các script vẽ hiện dùng Arial trên Windows |
 | draw.io / PNG | Sơ đồ chỉnh sửa được và bản hình đưa vào báo cáo |
 | Git / GitHub | Quản lý phiên bản mã nguồn, tài liệu và minh chứng đã rà soát |
@@ -65,7 +65,7 @@ Không mặc định công cụ đã hoạt động chỉ vì đã cài hoặc t
 | 10: Kiểm thử ETL và kho | Đang thực hiện | Đã đối soát nguồn/kho và chạy các ca trùng, xung đột, thiếu dimension, thời gian trong SSMS; xem `report/minh_chung/ket_qua_etl.csv`. Chưa chạy SSIS trên kho trống độc lập và chưa giả lập lỗi giữa luồng hoàn chỉnh. |
 | ETL | T-SQL và package SSIS đã chạy | Nguồn → staging → dimension/fact; có nhánh lỗi và log, còn giới hạn vận hành được ghi trong hướng dẫn bước 9 |
 | 11: OLAP / SSAS / Power BI | Đạt phần chính (còn giới hạn schema PBIR) | Đã chạy 8 SQL OLAP (`sql/olap/01`–`08`), dựng/deploy/process cube SSAS 5 chiều (`HanoiAirOLAP`, có `DimSensor`), chạy 3 MDX khớp SQL và dựng PBIP nháp khớp SQL (`5.749` PM2.5 TB `38,75`). Còn 1 cảnh báo provider SSDT và 2 schema PBIR mới chưa công bố; xem `report/cac_phan/07_olap_buoc11.md`. |
-| Power BI / báo cáo tổng hợp | Chuyển tiếp Bước 12–14 | PBIP Bước 11 đã hoạt động với 6 bảng, 5 quan hệ và measure cơ bản; các bước 12–14 sẽ bổ sung đủ DAX, 3 trang báo cáo và `vw_StationHourly`/`vw_StationPairHourly`. |
+| Power BI / báo cáo tổng hợp | Bước 12 đạt phần mô hình & DAX; chuyển tiếp Bước 13–14 | PBIP đã chuẩn hóa Bước 12 (tắt Auto Date/Time, `DimDate` là Date Table, ẩn khóa kỹ thuật, 11 DAX measures trong `dashboard/measures.dax` và `dashboard/dinh_nghia_chi_so.md`; kiểm chứng DAX qua `msmdsrv` khớp SQL, `Nồng độ trung bình` trả `BLANK()` khi bỏ chọn chất). Còn lưu bản `.pbix` tại `dashboard/khong_khi_ha_noi.pbix` từ giao diện Power BI Desktop. Các bước 13–14 sẽ dựng 3 trang báo cáo và `vw_StationHourly`/`vw_StationPairHourly`. |
 
 Môi trường SSIS đã sửa: gỡ Analysis Services Projects 4.0.0 bằng VSIX Installer vì gói Repair có URI rỗng; Visual Studio chuyển `isComplete=True`; SSIS 2.2 cài thành công, tạo được project và mở package designer. Package ETL đã chạy thành công hai lần. Analysis Services đã gỡ, cần cài lại nếu dùng cube SSAS. Không tự sửa/xóa thành phần dùng chung của môi trường phát triển.
 
